@@ -123,7 +123,7 @@ class Tools
         return FamilyList::find()->where(['group_id' => $group_id])->count();
     }
 
-    public static function renderSchedule(LessonSchedule|null $schedule)
+    public static function renderSchedule(LessonSchedule|null $schedule): string
     {
         if (!$schedule) {
             return "<h4 class='text-warning'>Schedule hasn't set yet</h4>";
