@@ -10,11 +10,10 @@ use yii\base\Module;
 class Teacher extends Module
 {
 
-
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function init(): void
     {
         parent::init();
 

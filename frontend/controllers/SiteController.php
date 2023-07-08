@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\widgets\Detect;
 use frontend\models\LoginForm;
 use frontend\models\SignupForm;
 use Yii;
@@ -65,9 +66,9 @@ class SiteController extends Controller
     /**
      * Displays homepage.
      *
-     * @return mixed
+     * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         return $this->render('index');
     }
@@ -75,17 +76,17 @@ class SiteController extends Controller
     /**
      * Logs in a user.
      *
-     * @return mixed
+     * @return Response|string
      */
-    public function actionLogin()
+    public function actionLogin(): Response|string
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect([Detect::detectRole(Yii::$app->user->identity->role)]);
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect([Detect::detectRole(Yii::$app->user->identity->role)]);
         }
 
         $model->password = '';
@@ -102,7 +103,6 @@ class SiteController extends Controller
 
         return $this->goHome();
     }
-
 
 
     /**

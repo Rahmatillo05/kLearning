@@ -15,7 +15,23 @@ return [
         'teacher' => [
             'class' => 'frontend\modules\teacher\Teacher',
             'layout' => 'main'
-        ]
+        ],
+        'pupil' => [
+            'class' => 'frontend\modules\pupil\Pupil',
+            'layout' => 'main'
+        ],
+        'parent' => [
+            'class' => 'frontend\modules\parent\Parents',
+            'layout' => 'main'
+        ],
+        'manager' => [
+            'class' => 'frontend\modules\manager\Manager',
+            'layout' => 'main'
+        ],
+        'owner' => [
+            'class' => 'frontend\modules\owner\Owner',
+            'layout' => 'main'
+        ],
     ],
     'components' => [
         'request' => [

@@ -3,6 +3,7 @@
 namespace common\widgets;
 
 use common\models\user\User;
+use common\models\user\UserRole;
 
 class Detect
 {
@@ -23,5 +24,11 @@ class Detect
     public static function teachers(): array
     {
         return User::findAll(['role' => self::TEACHER]);
+    }
+
+    public static function detectRole(int $user_role): string
+    {
+        $base_role = UserRole::findOne(['role_power' => $user_role]);
+        return "/".strtolower($base_role->role_name);
     }
 }
