@@ -20,7 +20,7 @@ $this->title = $group->name
             <div class="card-header d-md-flex justify-content-between">
                 <h3 class="card-title">Dars jadvali</h3>
                 <p>
-                    <?= Html::a('<i class="ti ti-pencil"></i>', ['lesson-schedule', 'gorup_id' => $group->id], ['class' => 'btn btn-outline-info']) ?>
+                    <?= Html::a('<i class="ti ti-pencil"></i>', ['lesson-schedule', 'group_id' => $group->id], ['class' => 'btn btn-outline-info']) ?>
 
                 </p>
             </div>

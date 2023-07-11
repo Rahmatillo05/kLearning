@@ -96,7 +96,7 @@ class Group extends ActiveRecord
         return ArrayHelper::map(User::findAll(['role' => Detect::TEACHER]), 'id', 'full_name');
     }
 
-    public function getSchedule(): LessonSchedule
+    public function getSchedule(): LessonSchedule|null
     {
         return LessonSchedule::findOne(['group_id' => $this->id]);
     }

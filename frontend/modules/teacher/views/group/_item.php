@@ -19,7 +19,7 @@ use yii\widgets\DetailView;
         </h5>
         <p>
             <?= Html::a('<i class="ti ti-pencil"></i>', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']) ?>
-            <?= Html::a('<i class="ti ti-clock"></i>', ['lesson-schedule', 'gorup_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
+            <?= Html::a('<i class="ti ti-clock"></i>', ['lesson-schedule', 'group_id' => $model->id], ['class' => 'btn btn-info btn-sm']) ?>
             <?= Html::a('<i class="ti ti-trash"></i>', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger btn-sm',
                 'data' => [
