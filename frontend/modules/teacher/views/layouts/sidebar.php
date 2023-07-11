@@ -24,7 +24,7 @@ use yii\helpers\Url; ?>
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
-                        <span class="hide-menu">Dashboard</span>
+                        <span class="hide-menu">Bosh menu</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
@@ -32,11 +32,19 @@ use yii\helpers\Url; ?>
                     <span class="hide-menu">User Controls</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/teacher/user']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/teacher/group']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-users"></i>
                         </span>
-                        <span class="hide-menu">Users</span>
+                        <span class="hide-menu">Guruhlarim</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/teacher/course']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Kurslarim</span>
                     </a>
                 </li>
             </ul>

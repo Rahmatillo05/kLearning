@@ -26,17 +26,41 @@ class Tools
         return $username;
     }
 
-    public static function setStatusBadge($staus)
+    public static function setStatusBadge($status): string
     {
-        if ($staus == self::STATUS_DELETED) {
+        if ($status == self::STATUS_DELETED) {
             return "<span class='badge bg-danger rounded-3 fw-semibold'>O'chirilgan</span>";
-        } elseif ($staus == self::STATUS_INACTIVE) {
+        } elseif ($status == self::STATUS_INACTIVE) {
             return "<span class='badge bg-warning rounded-3 fw-semibold'>Nofaol</span>";
         }
         return "<span class='badge bg-success rounded-3 fw-semibold'>Faol</span>";
     }
 
-    public static function statusList()
+    public static function setStatusBadgeAsIcon(int $status)
+    {
+        if ($status == self::STATUS_DELETED) {
+            return '<span class="badge bg-danger rounded-3 fw-semibold"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            data-bs-title="O\'chirilgan">
+                          <i class="ti ti-cross"></i>
+                      </span>';
+        } elseif ($status == self::STATUS_INACTIVE) {
+            return '<span class="badge bg-warning rounded-3 fw-semibold"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            data-bs-title="Nofaol">
+                            <i class="ti ti-clock-pause"></i>
+                        </span>';
+        }
+        return '<span class="badge bg-success rounded-3 fw-semibold"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            data-bs-title="Faol">
+                    <i class="ti ti-activity"></i>
+                 </span>';
+    }
+    public static function statusList(): array
     {
         return [
             self::STATUS_DELETED => "O'chirilgan",
@@ -45,7 +69,7 @@ class Tools
         ];
     }
 
-    public static function statusStyleList()
+    public static function statusStyleList(): array
     {
         return [
             self::STATUS_DELETED => "<span class='badge bg-danger rounded-3 fw-semibold'>O'chirilgan</span>",

@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 /** @var string $content */
 
+use common\widgets\Detect;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
@@ -42,9 +43,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                 Yii::$app->user->isGuest
                     ? ['label' => 'Login', 'url' => ['/site/login']]
                     : '<li class="nav-item">'
-                    . Html::beginForm(['/site/logout'])
+                    . Html::beginForm([Detect::detectRole(Yii::$app->user->identity->role)])
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        "Profile",
                         ['class' => 'nav-link btn btn-link logout']
                     )
                     . Html::endForm()

@@ -1,0 +1,66 @@
+<?php
+
+use common\models\groups\Group;
+use common\widgets\Tools;
+use yii\helpers\Html;
+use yii\web\View;
+use yii\widgets\DetailView;
+
+
+/**
+ * @var Group $group
+ * @var View $this
+ */
+$this->title = $group->name
+?>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header d-md-flex justify-content-between">
+                <h3 class="card-title">Dars jadvali</h3>
+                <p>
+                    <?= Html::a('<i class="ti ti-pencil"></i>', ['lesson-schedule', 'gorup_id' => $group->id], ['class' => 'btn btn-outline-info']) ?>
+
+                </p>
+            </div>
+            <div class="card-bdy">
+                <?= Tools::renderSchedule($group->schedule) ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header d-md-flex justify-content-between">
+                <h3 class="card-title">Guruh haqida</h3>
+                <p>
+                    <?= Html::a('<i class="ti ti-pencil"></i>', ['update', 'id' => $group->id], ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a('<i class="ti ti-trash"></i>', ['delete', 'id' => $group->id], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => 'Are you sure you want to delete this item?',
+                            'method' => 'post',
+                        ],
+                    ]) ?>
+                </p>
+            </div>
+            <div class="card-bdy">
+                <?= DetailView::widget([
+                    'model' => $group,
+                    'options' => [
+                        'class' => 'table'
+                    ],
+                    'attributes' => [
+                        'name',
+                        [
+                            'attribute' => 'status',
+                            'value' => Tools::setStatusBadge($group->status),
+                            'format' => 'raw'
+                        ],
+                        'created_at:date'
+                    ]
+                ]) ?>
+            </div>
+        </div>
+    </div>
+</div>

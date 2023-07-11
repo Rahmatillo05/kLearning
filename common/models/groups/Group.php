@@ -21,6 +21,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property FamilyList[] $familyLists
  * @property-read array $teacherList
+ * @property-read ActiveQuery $schedule
  * @property User $teacher
  */
 class Group extends ActiveRecord
@@ -46,7 +47,7 @@ class Group extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['teacher_id', 'name'], 'required'],
@@ -59,14 +60,14 @@ class Group extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
-            'teacher_id' => 'Teacher ID',
-            'name' => 'Name',
-            'status' => 'Status',
-            'created_at' => 'Created At',
+            'teacher_id' => 'O\'qituvchi',
+            'name' => 'Guruh nomi',
+            'status' => 'Holati',
+            'created_at' => 'Ochilgan vaqti',
         ];
     }
 
@@ -93,5 +94,10 @@ class Group extends ActiveRecord
     public function getTeacherList(): array
     {
         return ArrayHelper::map(User::findAll(['role' => Detect::TEACHER]), 'id', 'full_name');
+    }
+
+    public function getSchedule(): LessonSchedule
+    {
+        return LessonSchedule::findOne(['group_id' => $this->id]);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 return [
-    'id' => 'app-teacher',
+    'id' => 'teacher',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\modules\teacher\controllers',
     'defaultRoute' => 'app',
@@ -20,7 +20,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'scriptUrl' => '/teacher/index.php',
-            'rules' => [],
+            'rules' => [
+                'course/<slug>' => 'course/view',
+            ],
         ],
         'request' => [
             'class' => \yii\web\Request::class,

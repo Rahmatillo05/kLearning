@@ -13,7 +13,9 @@ class StaticSource
             'Payshanba' => 'Payshanba',
             'Juma' => 'Juma',
             'Shanba' => 'Shanba',
-            'Yakshanba'=>'Yakshanba'
+            'Yakshanba' => 'Yakshanba'
         ];
     }
+
+
 }

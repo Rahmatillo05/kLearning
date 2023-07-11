@@ -6,10 +6,12 @@ use common\models\user\User;
 use common\models\user\UserRole;
 use common\widgets\Detect;
 use Yii;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\web\UploadedFile;
 
 /**
@@ -136,4 +138,6 @@ class Course extends ActiveRecord
             return false;
         }
     }
+
+
 }
