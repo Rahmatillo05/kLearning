@@ -4,6 +4,7 @@
 
 /** @var string $content */
 
+use common\widgets\Alert;
 use frontend\assets\ModuleAssets;
 use yii\bootstrap5\Html;
 
@@ -28,6 +29,7 @@ ModuleAssets::register($this);
         <div class="body-wrapper">
             <?= $this->render('header') ?>
             <div class="container-fluid">
+                <?= Alert::widget() ?>
                 <?= $content ?>
             </div>
         </div>

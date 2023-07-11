@@ -2,6 +2,7 @@
 
 namespace frontend\modules\teacher\controllers;
 
+use common\models\groups\FamilyList;
 use common\models\groups\Group;
 use common\models\groups\LessonSchedule;
 use frontend\controllers\ModuleController;
@@ -29,15 +30,7 @@ class GroupController extends ModuleController
         return $this->render('index', compact('dataProvider'));
     }
 
-    /**
-     * @throws NotFoundHttpException
-     */
-    public function actionView(int $id): string
-    {
-        $group = $this->findModel($id);
 
-        return $this->render('view', compact('group'));
-    }
     public function actionLessonSchedule(int $group_id): Response|string
     {
         $model = LessonSchedule::findOne(['group_id' => $group_id]) ?? new LessonSchedule();
@@ -81,6 +74,32 @@ class GroupController extends ModuleController
             'model' => $model,
         ]);
     }
+
+
+    /**
+     * Displays a single Group model.
+     * @param int $id ID
+     * @return Response|string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionView(int $id): Response|string
+    {
+        $group = $this->findModel($id);
+        $family = new FamilyList();
+        $family->group_id = $group->id;
+        $schedule = LessonSchedule::findOne(['group_id' => $group->id]);
+        if ($family->load($this->request->post())) {
+            if ($family->pupilIsSet() && $family->save()) {
+                Yii::$app->session->setFlash('success', 'New Pupil added');
+            } else {
+                Yii::$app->session->setFlash('danger', 'This pupil has already added');
+            }
+            return $this->refresh();
+        }
+        $pupil_list = FamilyList::findAll(['group_id' => $group->id]);
+        return $this->render('view', compact('family', 'pupil_list', 'group', 'schedule'));
+    }
+
     /**
      * @throws NotFoundHttpException
      */

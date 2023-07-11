@@ -1,5 +1,7 @@
 <?php
 
+use common\models\groups\Family;
+use common\models\groups\FamilyList;
 use common\models\groups\Group;
 use common\widgets\Tools;
 use yii\helpers\Html;
@@ -10,6 +12,8 @@ use yii\widgets\DetailView;
 /**
  * @var Group $group
  * @var View $this
+ * @var FamilyList $pupil_list
+ * @var Family $family
  */
 $this->title = $group->name
 ?>
@@ -64,3 +68,4 @@ $this->title = $group->name
         </div>
     </div>
 </div>
+<?= $this->render('pupil', compact('pupil_list', 'family')) ?>
