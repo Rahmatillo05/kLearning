@@ -20,13 +20,7 @@ use yii\bootstrap5\ActiveForm;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'teacher_id')->widget(Select2::class, [
-        'data' => $model->teacherList,
-        'hideSearch' => true,
-        'options' => [
-            'placeholder' => 'Select teacher ...'
-        ]
-    ]) ?>
+    <?= $form->field($model, 'teacher_id')->hiddenInput(['value' => Yii::$app->user->id])->label(false) ?>
 
     <?= $form->field($model, 'category_id')->widget(Select2::class, [
         'data' => $model->categoryList,

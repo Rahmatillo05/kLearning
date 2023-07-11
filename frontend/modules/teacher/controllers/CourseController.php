@@ -8,6 +8,8 @@ use frontend\controllers\ModuleController;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
+use yii\web\UploadedFile;
 
 class CourseController extends ModuleController
 {
@@ -37,6 +39,27 @@ class CourseController extends ModuleController
     {
         $model = $this->findModelBySlug($id);
         return $this->render('view', compact('model'));
+    }
+
+    public function actionCreate(): Response|string
+    {
+        $model = new Course();
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post())) {
+                $image = UploadedFile::getInstance($model, 'image');
+                if ($model->image = $model->uploadFile($image)) {
+                    $model->save();
+                    Yii::$app->session->setFlash('success', 'Course added');
+                    return $this->redirect(['view', 'id' => $model->id]);
+                } else {
+                    Yii::$app->session->setFlash('danger', 'Course no added');
+                    $model->loadDefaultValues();
+                }
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+        return $this->render('create', compact('model'));
     }
 
     /**

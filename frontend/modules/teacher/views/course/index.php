@@ -12,7 +12,7 @@ use yii\widgets\ListView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Courses';
+$this->title = 'Kurslarim';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card">
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="card-body">
         <p>
-            <?= Html::a('Create Course', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Yangi qo\'shish', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
 
         <?= ListView::widget([
