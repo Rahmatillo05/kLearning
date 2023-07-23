@@ -17,6 +17,8 @@ class m230621_004552_create_user_info_table extends Migration
             'user_id' => $this->integer()->notNull(),
             'image' => $this->string(),
             'about' => $this->text()->notNull(),
+            'education' => $this->text()->notNull(),
+            'experience' => $this->text()->notNull(),
             'job' => $this->string()->notNull(),
             'social_media' => $this->text()
         ]);
