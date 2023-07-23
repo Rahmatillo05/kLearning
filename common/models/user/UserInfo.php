@@ -2,6 +2,10 @@
 
 namespace common\models\user;
 
+use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "user_info".
  *
@@ -9,17 +13,19 @@ namespace common\models\user;
  * @property int $user_id
  * @property string|null $image
  * @property string $about
+ * @property string $education
+ * @property string $experience
  * @property string $job
  * @property string|null $social_media
  *
  * @property User $user
  */
-class UserInfo extends \yii\db\ActiveRecord
+class UserInfo extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'user_info';
     }
@@ -30,9 +36,9 @@ class UserInfo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'about', 'job'], 'required'],
+            [['user_id', 'about', 'education', 'experience', 'job'], 'required'],
             [['user_id'], 'integer'],
-            [['about', 'social_media'], 'string'],
+            [['about', 'education', 'experience'], 'string'],
             [['image', 'job'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -41,13 +47,15 @@ class UserInfo extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
             'user_id' => 'User ID',
             'image' => 'Image',
             'about' => 'About',
+            'education' => 'Education',
+            'experience' => 'Experience',
             'job' => 'Job',
             'social_media' => 'Social Media',
         ];
@@ -56,9 +64,9 @@ class UserInfo extends \yii\db\ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }

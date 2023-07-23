@@ -46,7 +46,8 @@ $query = Yii::$app->request->get('q');
                     'class' => 'col-12'
                 ],
                 'maxButtonCount' => 5
-            ]
+            ],
+            'emptyText' => "<div class='col-12'><h3 class='text-warning'>Hech qanday kurs topilmadi!</h3></div>"
         ]);
         ?>
 </section>

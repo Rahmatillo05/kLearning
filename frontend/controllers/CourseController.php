@@ -25,7 +25,7 @@ class CourseController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => Course::find(),
             'pagination' => [
-                'pageSize' => 2
+                'pageSize' => 12
             ],
             'sort' => [
                 'defaultOrder' => [

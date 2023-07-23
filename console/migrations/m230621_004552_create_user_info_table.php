@@ -19,8 +19,7 @@ class m230621_004552_create_user_info_table extends Migration
             'about' => $this->text()->notNull(),
             'education' => $this->text()->notNull(),
             'experience' => $this->text()->notNull(),
-            'job' => $this->string()->notNull(),
-            'social_media' => $this->text()
+            'job' => $this->string()->notNull()
         ]);
         $this->addForeignKey('fk-to-user-from-user_info', 'user_info', 'user_id', 'user', 'id', 'CASCADE', 'CASCADE');
     }

@@ -1,11 +1,12 @@
 <?php
 
+use common\models\user\User;
 use common\widgets\Tools;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var \common\models\user\User $model */
+/** @var User $model */
 
 $this->title = $model->username;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];

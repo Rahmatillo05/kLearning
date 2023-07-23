@@ -2,9 +2,12 @@
 
 namespace backend\controllers;
 
+use common\models\user\TeacherSocialAccounts;
 use common\models\user\User;
+use common\models\user\UserInfo;
 use common\widgets\Detect;
 use common\widgets\Tools;
+use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -49,15 +52,20 @@ class UserController extends BaseController
      */
     public function actionView(int $id): string
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $model = $this->findModel($id);
+        if ($model->role == Detect::TEACHER) {
+            $teacher_info = UserInfo::findOne(['user_id' => $model->id])  ?? new UserInfo();
+            $teacher_social_account = TeacherSocialAccounts::findOne(['user_id' => $model->id]) ?? new TeacherSocialAccounts();
+            return $this->render('teacher_view', compact('model','teacher_social_account', 'teacher_info'));
+        }
+        return $this->render('view', compact('model'));
     }
 
     /**
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|Response
+     * @throws Exception
      */
     public function actionCreate(): Response|string
     {
@@ -82,7 +90,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @throws \yii\base\Exception
+     * @throws Exception
      */
     public function actionAddParent(int $pupil_id): string|Response
     {
@@ -138,7 +146,7 @@ class UserController extends BaseController
      * Finds the User model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return \common\models\user\User the loaded model
+     * @return User the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel(int $id): User
