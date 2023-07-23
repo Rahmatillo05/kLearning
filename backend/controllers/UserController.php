@@ -61,6 +61,11 @@ class UserController extends BaseController
         return $this->render('view', compact('model'));
     }
 
+    public function actionTeacherInfo(int $id)
+    {
+
+    }
+
     /**
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.

@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <h4 class="card-header card-title">About Teacher</h4>
             <div class="card-body">
-                <?= $this->render('_teacher_info', ['model' => $teacher_info]) ?>
+                <?= $this->render('_teacher_info', ['model' => $teacher_info, 'teacher_id' => $model->id]) ?>
             </div>
         </div>
     </div>
