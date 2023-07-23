@@ -19,7 +19,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    public function behaviors(): array
     {
         return [
             'access' => [
@@ -97,7 +97,7 @@ class SiteController extends Controller
     }
 
 
-    public function actionLogout()
+    public function actionLogout(): Response
     {
         Yii::$app->user->logout();
 
@@ -123,4 +123,8 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionAbout(): string
+    {
+        return $this->render('about');
+    }
 }

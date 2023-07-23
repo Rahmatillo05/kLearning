@@ -3,6 +3,7 @@
 namespace common\models\course;
 
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -66,9 +67,9 @@ class Category extends ActiveRecord
     /**
      * Gets query for [[Courses]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getCourses()
+    public function getCourses(): ActiveQuery
     {
         return $this->hasMany(Course::class, ['category_id' => 'id']);
     }

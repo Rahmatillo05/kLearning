@@ -2,7 +2,9 @@
 
 namespace frontend\controllers;
 
+use common\models\course\Category;
 use common\models\course\Course;
+use common\widgets\Detect;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -22,9 +24,8 @@ class CourseController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Course::find(),
-
             'pagination' => [
-                'pageSize' => 9
+                'pageSize' => 2
             ],
             'sort' => [
                 'defaultOrder' => [
@@ -47,8 +48,10 @@ class CourseController extends Controller
      */
     public function actionView(int $id): string
     {
+        $categories = Category::findAll(['status' => Detect::STATUS_ACTIVE]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'categories'=>$categories
         ]);
     }
 

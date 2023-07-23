@@ -1,9 +1,9 @@
 <?php
 
 use common\models\course\Course;
+use yii\bootstrap5\LinkPager;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use yii\widgets\ListView;
 
 /** @var yii\web\View $this */
@@ -11,29 +11,42 @@ use yii\widgets\ListView;
 
 $this->title = 'Courses';
 $this->params['breadcrumbs'][] = $this->title;
+$query = Yii::$app->request->get('q');
+
 ?>
-<div class="course-index">
-    <section class="special_cource padding_top">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-5">
-                    <div class="section_tittle text-center">
-                        <p>popular courses</p>
-                        <h2>Special Courses</h2>
-                    </div>
+<section class="ftco-section bg-light" id="course_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 sidebar">
+                <div class="sidebar-box bg-white ftco-animate">
+                    <form method="get" class="search-form">
+                        <div class="form-group">
+                            <span class="icon fa fa-search"></span>
+                            <input type="text" class="form-control" value="<?= $query ?>" autocomplete="off" name="q"
+                                   placeholder="Qidirish...">
+                        </div>
+                    </form>
                 </div>
             </div>
-            <?= ListView::widget([
-                'dataProvider' => $dataProvider,
-                'itemOptions' => ['class' => 'col-sm-6 col-lg-4'],
-                'options' => [
-                    'class' => 'row'
-                ],
-                'itemView' => '_item',
-                'layout' => "{items}\n{pager}"
-            ]) ?>
         </div>
-    </section>
-
-
-</div>
+        <?=
+        ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_item',
+            'layout' => "{items}\n{pager}",
+            'options' => [
+                'class' => 'row'
+            ],
+            'itemOptions' => [
+                'class' => 'col-md-6 col-lg-4 d-flex align-items-stretch ftco-animate'
+            ],
+            'pager' => [
+                'class' => LinkPager::class,
+                'options' => [
+                    'class' => 'col-12'
+                ],
+                'maxButtonCount' => 5
+            ]
+        ]);
+        ?>
+</section>
