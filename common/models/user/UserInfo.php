@@ -39,8 +39,9 @@ class UserInfo extends ActiveRecord
             [['user_id', 'about', 'education', 'experience', 'job'], 'required'],
             [['user_id'], 'integer'],
             [['about', 'education', 'experience'], 'string'],
-            [['image', 'job'], 'string', 'max' => 255],
+            [['job'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['image'], 'image']
         ];
     }
 

@@ -12,20 +12,25 @@ use yii\helpers\Url;
 <div class="user-_teacher_info">
 
     <?php $form = ActiveForm::begin([
-            'action' => Url::toRoute(['/user/teacher-info', 'id' => $teacher_id])
+        'action' => Url::toRoute(['/user/teacher-info', 'id' => $teacher_id])
     ]); ?>
 
-        <?= $form->field($model, 'user_id')->hiddenInput(['value' => $teacher_id])->label(false) ?>
-        <?= $form->field($model, 'job') ?>
-        <?= $form->field($model, 'about')->textarea(['rows' => 5]) ?>
-        <?= $form->field($model, 'education')->textarea(['rows' => 5]) ?>
-        <?= $form->field($model, 'experience')->textarea(['rows' => 5]) ?>
-        <?= $model->image ? Html::img(Yii::getAlias('@images')."/{$model->image}") : ''?>
-        <?= $form->field($model, 'image')->fileInput() ?>
-    
-        <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
-        </div>
+    <?= $form->field($model, 'user_id')->hiddenInput(['value' => $teacher_id])->label(false) ?>
+    <?= $form->field($model, 'job') ?>
+    <?= $form->field($model, 'about')->textarea(['rows' => 5]) ?>
+    <?= $form->field($model, 'education')->textarea(['rows' => 5]) ?>
+    <?= $form->field($model, 'experience')->textarea(['rows' => 5]) ?>
+
+    <div class="form-group mb-3">
+        <?= $model->image ? Html::img(Yii::getAlias('@images') . "/{$model->image}", ['class' => 'img-fluid w-50']) : '' ?>
+
+    </div>
+
+    <?= $form->field($model, 'image')->fileInput() ?>
+
+    <div class="form-group">
+        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+    </div>
     <?php ActiveForm::end(); ?>
 
 </div><!-- user-_teacher_info -->

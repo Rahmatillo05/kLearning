@@ -7,10 +7,13 @@ use common\models\user\User;
 use common\models\user\UserInfo;
 use common\widgets\Detect;
 use common\widgets\Tools;
+use common\widgets\UploadFile;
+use Yii;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\web\UploadedFile;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -61,9 +64,21 @@ class UserController extends BaseController
         return $this->render('view', compact('model'));
     }
 
-    public function actionTeacherInfo(int $id)
+    public function actionTeacherInfo(int $id): Response
     {
-
+        $model = UserInfo::findOne(['user_id' => $id])  ?? new UserInfo();
+        if($this->request->isPost && $model->load($this->request->post()) ){
+            $image = UploadedFile::getInstance($model, 'image');
+            $model->image = $image ? UploadFile::saveFile($image) : $model->getOldAttribute('image');
+            if ($model->save()){
+                Yii::$app->session->setFlash('success', 'Information saved!');
+                return $this->redirect(['view', 'id' => $id]);
+            } else{
+                Yii::$app->session->setFlash('danger', 'Information not saved!');
+                $model->loadDefaultValues();
+            }
+        }
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     /**
