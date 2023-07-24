@@ -16,39 +16,55 @@ $this->params['breadcrumbs'][] = ['label' => 'Kurslar', 'url' => ['course/index'
 
 ?>
 
-<section class="ftco-section ftco-no-pt ftco-no-pb">
+
+<section class="ftco-section bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 ftco-animate py-md-5 mt-md-5">
-
-                <h1 class="mb-3"><?= $model->title ?></h1>
-                <p>
-                    <img src="<?= Yii::getAlias('@images') . '/' . $model->image ?>" alt="<?= $model->title ?>"
-                         class="img-fluid w-100">
-                </p>
-                <p><?= $model->description ?></p>
-                <div class="d-flex justify-content-between">
-                    <p class="advisor">O'qituvchi: <span><a
-                                href="<?= Url::to(['teachers/view', 'id' => $model->teacher->id]) ?>"><?= $model->teacher->full_name?></a></span>
-                    </p>
-                </div>
-                <a href="<?= Url::to(['/course/online-apply', 'id' => $model->id, 't_id' => $model->teacher->id]) ?>" class="btn btn-flat btn-outline-primary mt-3">Qabulga yozilish</a>
-            </div> <!-- .col-md-8 -->
-            <div class="col-lg-4 sidebar ftco-animate pl-md-4 py-md-5 mt-5">
-                <div class="sidebar-box ftco-animate">
-                    <div class="categories">
-                        <h3>Kataloglar</h3>
-                        <?php foreach ($categories as $category) : ?>
-                            <li><a href="<?= Url::to(['course/index']) ?>"><?= $category->name ?> <span>(<?= count($category->courses) ?>)</span></a></li>
-                        <?php endforeach; ?>
+            <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 offset-xl-0 offset-lg-0 offset-md-2 offset-sm-0 offset-0">
+                <div class="row">
+                    <div class="col-md-12 d-flex align-items-stretch ftco-animate">
+                        <div class="project-wrap">
+                                <span href="" class="img"
+                                      style="background-image: url(<?= Yii::getAlias('@images') . '/' . $model->image ?>);">
+                                    <span class="price"><?= $model->category->name ?></span>
+                                </span>
+                            <div class="text p-4">
+                                <h3><span><?= $model->title ?></span></h3>
+                                <p class="advisor"> O'qituvchi : <a href="<?= Url::to(['/teachers/view', 'id' => $model->id]) ?>"><?= $model->teacher->full_name ?></a></p>
+                                <p class="advisor"><?= $model->description ?></p>
+                                <ul class="d-flex justify-content-between">
+                                    <li><span class="flaticon-shower">Birinchi darsimiz:</span></li>
+                                    <li class="price"><?= $model->first_lesson ?></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-
-
             </div>
-
+            <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 offset-xl-0 offset-lg-0 offset-md-2 offset-sm-0 offset-0 mt-3">
+                <div class="row">
+                    <div class="col-md-12 ftco-animate">
+                        <form action="">
+                            <h3>Qabulga yozilish!</h3>
+                            <label for="courseTitle">Course Title</label>
+                            <input type="text" value="Backend Group" class="form-control" required name="" readonly
+                                   id="courseTitle"><br>
+                            <label for="ism">Ismingiz</label>
+                            <input type="text" value="" class="form-control" placeholder="Familyangiz" required name=""
+                                   id="ism"><br>
+                            <label for="familya">Yashash manzilingiz:</label>
+                            <input type="text" value="" class="form-control" placeholder="Manzil" required name=""
+                                   id="familya"><br>
+                            <label for="Telefon">Telefon Raqam</label>
+                            <input type="text" value="+998" class="form-control" placeholder="Telafon Raqamingiz"
+                                   required name="" id="Telefon"><br>
+                            <button class="btn btn-outline-info">Saqlash</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</section> <!-- .section -->
+    </div>
+</section>
 
