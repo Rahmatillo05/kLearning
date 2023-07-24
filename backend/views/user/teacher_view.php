@@ -67,10 +67,17 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="col-md-6">
         <div class="card">
-
             <h4 class="card-header card-title">About Teacher</h4>
             <div class="card-body">
                 <?= $this->render('_teacher_info', ['model' => $teacher_info, 'teacher_id' => $model->id]) ?>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <h4 class="card-header card-title">Social accounts</h4>
+            <div class="card-body">
+                <?= $this->render('_teacher_social_accounts', ['model' => $teacher_social_account, 'teacher_id' => $model->id]) ?>
             </div>
         </div>
     </div>

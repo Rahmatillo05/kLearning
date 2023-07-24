@@ -3,6 +3,7 @@
 namespace common\models\user;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "teacher_social_accounts".
@@ -23,7 +24,7 @@ class TeacherSocialAccounts extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'teacher_social_accounts';
     }
@@ -31,7 +32,7 @@ class TeacherSocialAccounts extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['user_id'], 'required'],
@@ -44,11 +45,11 @@ class TeacherSocialAccounts extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
-            'user_id' => 'User ID',
+            'user_id' => 'Teacher',
             'telegram' => 'Telegram',
             'email' => 'Email',
             'instagram' => 'Instagram',
@@ -61,9 +62,9 @@ class TeacherSocialAccounts extends \yii\db\ActiveRecord
     /**
      * Gets query for [[User]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }

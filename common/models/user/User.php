@@ -6,6 +6,7 @@ use common\models\groups\Family;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\web\IdentityInterface;
@@ -25,7 +26,10 @@ use yii\web\IdentityInterface;
  * @property int $updated_at
  * @property int $role
  *
- * @property UserInfo[] $userInfos
+ * @property-read ActiveQuery $socialAccount
+ * @property-write string $password
+ * @property-read string $authKey
+ * @property UserInfo $userInfo
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -104,11 +108,11 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Gets query for [[UserInfos]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getUserInfos()
+    public function getUserInfo(): ActiveQuery
     {
-        return $this->hasMany(UserInfo::class, ['user_id' => 'id']);
+        return $this->hasOne(UserInfo::class, ['user_id' => 'id']);
     }
 
     public static function findIdentity($id)
@@ -195,5 +199,10 @@ class User extends ActiveRecord implements IdentityInterface
         $family->pupil_id = $pupil_id;
         $family->parent_id = $this->id;
         return $family->save();
+    }
+
+    public function getSocialAccount(): ActiveQuery
+    {
+        return $this->hasOne(TeacherSocialAccounts::class, ['user_id'  =>'id']);
     }
 }

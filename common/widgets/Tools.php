@@ -4,6 +4,7 @@ namespace common\widgets;
 
 use common\models\groups\FamilyList;
 use common\models\groups\LessonSchedule;
+use common\models\user\TeacherSocialAccounts;
 use common\models\user\User;
 use common\models\user\UserRole;
 use Yii;
@@ -36,7 +37,7 @@ class Tools
         return "<span class='badge bg-success rounded-3 fw-semibold'>Faol</span>";
     }
 
-    public static function setStatusBadgeAsIcon(int $status)
+    public static function setStatusBadgeAsIcon(int $status): string
     {
         if ($status == self::STATUS_DELETED) {
             return '<span class="badge bg-danger rounded-3 fw-semibold"
@@ -164,5 +165,15 @@ class Tools
         }
         $table .= "</table>";
         return $table;
+    }
+
+    public static function renderTeacherSocials(TeacherSocialAccounts|null $socialAccounts): string
+    {
+        return '<ul class="ftco-social text-center">
+									<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="fa fa-google"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+								</ul>';
     }
 }
