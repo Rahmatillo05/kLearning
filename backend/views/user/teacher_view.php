@@ -20,9 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="row">
     <div class="col-md-6">
         <div class="card">
-
             <h4 class="card-header card-title"><?= Html::encode($this->title) ?></h4>
-
             <div class="card-body">
                 <p>
                     <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -61,7 +59,16 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ],
                 ]) ?>
-
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h4 class="card-header card-title">Social accounts</h4>
+                    <div class="card-body">
+                        <?= $this->render('_teacher_social_accounts', ['model' => $teacher_social_account, 'teacher_id' => $model->id]) ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -73,12 +80,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="card">
-            <h4 class="card-header card-title">Social accounts</h4>
-            <div class="card-body">
-                <?= $this->render('_teacher_social_accounts', ['model' => $teacher_social_account, 'teacher_id' => $model->id]) ?>
-            </div>
-        </div>
-    </div>
+
 </div>

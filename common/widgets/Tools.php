@@ -61,6 +61,7 @@ class Tools
                     <i class="ti ti-activity"></i>
                  </span>';
     }
+
     public static function statusList(): array
     {
         return [
@@ -167,13 +168,26 @@ class Tools
         return $table;
     }
 
-    public static function renderTeacherSocials(TeacherSocialAccounts|null $socialAccounts): string
+    public static function renderTeacherSocials(TeacherSocialAccounts|null $socialAccounts, $for_backend = false): string
     {
-        return '<ul class="ftco-social text-center">
+        if ($socialAccounts !== null) {
+            if (!$for_backend) {
+                return '<ul class="ftco-social text-center">
 									<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
 									<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
 									<li class="ftco-animate"><a href="#"><span class="fa fa-google"></span></a></li>
 									<li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
 								</ul>';
+            } else {
+                return '<ul class="ftco-social text-center">
+									<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="fa fa-google"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+								</ul>';
+            }
+        }
+        return '';
+
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use kartik\form\ActiveForm;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 /** @var common\models\user\TeacherSocialAccounts $model */
@@ -12,9 +13,13 @@ use yii\widgets\ActiveForm;
 ?>
 <div class="user-_teacher_social_accounts">
 
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'user_id')->hiddenInput(['value' => $teacher_id])->label(false) ?>
+    <?php $form = ActiveForm::begin([
+            'action' => Url::toRoute(['/user/teacher-accounts', 'id' => $teacher_id])
+    ]); ?>
+    <?=
+    $form->field($model, 'user_id')
+        ->hiddenInput(['value' => $teacher_id])
+        ->label(false) ?>
     <?= $form->field($model, 'telegram') ?>
     <?= $form->field($model, 'email') ?>
     <?= $form->field($model, 'instagram') ?>

@@ -57,23 +57,38 @@ class UserController extends BaseController
     {
         $model = $this->findModel($id);
         if ($model->role == Detect::TEACHER) {
-            $teacher_info = UserInfo::findOne(['user_id' => $model->id])  ?? new UserInfo();
+            $teacher_info = UserInfo::findOne(['user_id' => $model->id]) ?? new UserInfo();
             $teacher_social_account = TeacherSocialAccounts::findOne(['user_id' => $model->id]) ?? new TeacherSocialAccounts();
-            return $this->render('teacher_view', compact('model','teacher_social_account', 'teacher_info'));
+            return $this->render('teacher_view', compact('model', 'teacher_social_account', 'teacher_info'));
         }
         return $this->render('view', compact('model'));
     }
 
     public function actionTeacherInfo(int $id): Response
     {
-        $model = UserInfo::findOne(['user_id' => $id])  ?? new UserInfo();
-        if($this->request->isPost && $model->load($this->request->post()) ){
+        $model = UserInfo::findOne(['user_id' => $id]) ?? new UserInfo();
+        if ($this->request->isPost && $model->load($this->request->post())) {
             $image = UploadedFile::getInstance($model, 'image');
             $model->image = $image ? UploadFile::saveFile($image) : $model->getOldAttribute('image');
-            if ($model->save()){
+            if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Information saved!');
                 return $this->redirect(['view', 'id' => $id]);
-            } else{
+            } else {
+                Yii::$app->session->setFlash('danger', 'Information not saved!');
+                $model->loadDefaultValues();
+            }
+        }
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+    public function actionTeacherAccounts(int $id): Response
+    {
+        $model = TeacherSocialAccounts::findOne(['user_id' => $id]) ?? new TeacherSocialAccounts();
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Information saved!');
+                return $this->redirect(['view', 'id' => $id]);
+            } else {
                 Yii::$app->session->setFlash('danger', 'Information not saved!');
                 $model->loadDefaultValues();
             }

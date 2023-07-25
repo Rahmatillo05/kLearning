@@ -23,7 +23,7 @@ class BaseController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'teacher-info', 'lesson-schedule', 'add-parent', 'update-name', 'update-status', 'index', 'error', 'view', 'update', 'delete', 'create'],
+                        'actions' => ['logout', 'teacher-accounts', 'teacher-info', 'lesson-schedule', 'add-parent', 'update-name', 'update-status', 'index', 'error', 'view', 'update', 'delete', 'create'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
