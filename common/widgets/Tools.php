@@ -168,26 +168,20 @@ class Tools
         return $table;
     }
 
-    public static function renderTeacherSocials(TeacherSocialAccounts|null $socialAccounts, $for_backend = false): string
+    public static function renderTeacherSocials(TeacherSocialAccounts|null $socialAccounts, bool $for_backend = false)
     {
-        if ($socialAccounts !== null) {
-            if (!$for_backend) {
-                return '<ul class="ftco-social text-center">
-									<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="fa fa-google"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-								</ul>';
-            } else {
-                return '<ul class="ftco-social text-center">
-									<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="fa fa-google"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-								</ul>';
+        $icons = '<ul class="ftco-social text-center">';
+        $attributes = array_slice($socialAccounts->attributes, 2);
+        foreach($attributes as $key => $val){           
+            if($val){
+                if($key == 'email'){
+                    $icons .= '<li class="ftco-animate"><a href="'. $val .'"><span class="ti ti-brand-google"></span></a></li>';
+                }
+                $icons .= '<li class="ftco-animate"><a href="'. $val .'"><span class="ti ti-brand-'.$key.'"></span></a></li>';
             }
+           
         }
-        return '';
-
+        $icons .= '</ul>';
+        return $icons;
     }
 }
