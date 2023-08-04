@@ -47,6 +47,15 @@ use yii\helpers\Url; ?>
                         <span class="hide-menu">Kurslarim</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/teacher/app/my-room']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-door"></i>
+                        </span>
+                        <span class="hide-menu">Mening xonam</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

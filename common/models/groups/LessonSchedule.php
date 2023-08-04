@@ -56,13 +56,13 @@ class LessonSchedule extends \yii\db\ActiveRecord
             'id' => 'ID',
             'group_id' => 'Group',
             'room_id' => 'Room',
-            'monday' => 'Monday',
-            'tuesday' => 'Tuesday',
-            'wednesday' => 'Wednesday',
-            'thursday' => 'Thursday',
-            'friday' => 'Friday',
-            'saturday' => 'Saturday',
-            'sunday' => 'Sunday',
+            'monday' => 'Dushanba',
+            'tuesday' => 'Seshanba',
+            'wednesday' => 'Chorshanba',
+            'thursday' => 'Payshanba',
+            'friday' => 'Juma',
+            'saturday' => 'Shanba',
+            'sunday' => 'Yakshanba',
         ];
     }
 

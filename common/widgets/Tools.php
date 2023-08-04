@@ -149,18 +149,26 @@ class Tools
         return FamilyList::find()->where(['group_id' => $group_id])->count();
     }
 
-    public static function renderSchedule(LessonSchedule|null $schedule): string
+    public static function renderSchedule(LessonSchedule|null $schedule, bool $show_group_name = false, bool $without_room_name = false): string
     {
         if (!$schedule) {
             return "<h4 class='text-warning'>Schedule hasn't set yet</h4>";
         }
         $attributes = array_slice($schedule->attributes, 3, 8);
         $table = "<table class='table table-bordered'>";
-        $table .= "<tr><th>Room</th><td>{$schedule->room->name}</td></tr>";
+
+        if ($without_room_name) {
+            $table .= "<tr><th>Xona</th><td>{$schedule->room->name}</td></tr>";
+        }
+
+        if ($show_group_name){
+            $table .= "<tr><th>Guruh nomi</th><td>{$schedule->group->name}</td></tr>";
+        }
+
         foreach ($attributes as $key => $val) {
             $table .= "<tr>";
             if ($val) {
-                $table .= "<th>" . ucfirst($key) . "</th>\n<td>$val</td>";
+                $table .= "<th>" . $schedule->getAttributeLabel($key) . "</th>\n<td>$val</td>";
             }
             $table .= "</tr>";
         }
@@ -168,18 +176,18 @@ class Tools
         return $table;
     }
 
-    public static function renderTeacherSocials(TeacherSocialAccounts|null $socialAccounts, bool $for_backend = false)
+    public static function renderTeacherSocials(TeacherSocialAccounts|null $socialAccounts, bool $for_backend = false): string
     {
         $icons = '<ul class="ftco-social text-center">';
         $attributes = array_slice($socialAccounts->attributes, 2);
-        foreach($attributes as $key => $val){           
-            if($val){
-                if($key == 'email'){
-                    $icons .= '<li class="ftco-animate"><a href="'. $val .'"><span class="ti ti-brand-google"></span></a></li>';
+        foreach ($attributes as $key => $val) {
+            if ($val) {
+                if ($key == 'email') {
+                    $icons .= '<li class="ftco-animate"><a href="' . $val . '"><span class="ti ti-brand-google"></span></a></li>';
                 }
-                $icons .= '<li class="ftco-animate"><a href="'. $val .'"><span class="ti ti-brand-'.$key.'"></span></a></li>';
+                $icons .= '<li class="ftco-animate"><a href="' . $val . '"><span class="ti ti-brand-' . $key . '"></span></a></li>';
             }
-           
+
         }
         $icons .= '</ul>';
         return $icons;

@@ -10,21 +10,21 @@ use common\models\groups\FamilyList;
 <div class="row">
     <div class="col-md-4">
         <div class="card">
-            <h2 class="card-header card-title">Add pupil</h2>
+            <h2 class="card-header card-title">O'quvchi qo'shish</h2>
             <?= $this->render('_family', ['model' => $family]) ?>
         </div>
     </div>
     <div class="col-md-8">
         <div class="card">
-            <h2 class="card-header card-title">Pupil list</h2>
+            <h2 class="card-header card-title">O'quvchilar ro'yhati</h2>
             <div class="card-body p-2 table-responsive">
                 <table class="table">
                     <thead>
                     <tr>
                         <th>T/R</th>
-                        <th>Name</th>
-                        <th>Parent</th>
-                        <th>Contact</th>
+                        <th>Ismi</th>
+                        <th>Ota-onasi</th>
+                        <th>Bog'lanish</th>
                     </tr>
                     </thead>
                     <tbody>

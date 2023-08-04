@@ -15,13 +15,13 @@ use kartik\form\ActiveForm;
     <?= $form->field($model, 'family_id')->widget(Select2::class, [
         'data' => $model->families,
         'options' => [
-            'placeholder' => 'Select pupil...'
+            'placeholder' => 'O\'quvchini tanlang...'
         ]
-    ]) ?>
+    ])->label('O\'quvchilar') ?>
     <?= $form->field($model, 'group_id')->hiddenInput()->label(false) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Qo\'shish', ['class' => 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 
