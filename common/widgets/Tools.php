@@ -183,9 +183,9 @@ class Tools
         foreach ($attributes as $key => $val) {
             if ($val) {
                 if ($key == 'email') {
-                    $icons .= '<li class="ftco-animate"><a href="' . $val . '"><span class="ti ti-brand-google"></span></a></li>';
+                    $icons .= '<li class="ftco-animate"><a class="text-dark" href="' . $val . '"><span class="ti ti-brand-google"></span></a></li>';
                 }
-                $icons .= '<li class="ftco-animate"><a href="' . $val . '"><span class="ti ti-brand-' . $key . '"></span></a></li>';
+                $icons .= '<li class="ftco-animate"><a class="text-dark" href="' . $val . '"><span class="ti ti-brand-' . $key . '"></span></a></li>';
             }
 
         }

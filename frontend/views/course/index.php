@@ -1,15 +1,13 @@
 <?php
 
-use common\models\course\Course;
+
 use yii\bootstrap5\LinkPager;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\widgets\ListView;
 
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Courses';
+$this->title = 'Kurslar';
 $this->params['breadcrumbs'][] = $this->title;
 $query = Yii::$app->request->get('q');
 

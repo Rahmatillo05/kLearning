@@ -1,18 +1,27 @@
 <?php
+
+use yii\web\ErrorHandler;
+use yii\web\Session;
+use yii\web\User;
+
 return [
     'id' => 'teacher',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\modules\teacher\controllers',
     'defaultRoute' => 'app',
     'components' => [
+        'session' => [
+            'class' => Session::class,
+            'name' => 'kelajak-edu-teacher',
+        ],
         'user' => [
-            'class' => \yii\web\User::class,
+            'class' => User::class,
             'identityClass' => 'common\models\user\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-teacher', 'httpOnly' => true],
         ],
         'errorHandler' => [
-            'class' => \yii\web\ErrorHandler::class,
+            'class' => ErrorHandler::class,
             'errorAction' => 'app/error',
         ],
         'urlManager' => [

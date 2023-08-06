@@ -2,6 +2,7 @@
 
 namespace common\models\user;
 
+use common\models\course\Course;
 use common\models\groups\Family;
 use Yii;
 use yii\base\NotSupportedException;
@@ -29,6 +30,7 @@ use yii\web\IdentityInterface;
  * @property-read ActiveQuery $socialAccount
  * @property-write string $password
  * @property-read string $authKey
+ * @property-read \yii\db\ActiveQuery $courses
  * @property UserInfo $userInfo
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -204,5 +206,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function getSocialAccount(): ActiveQuery
     {
         return $this->hasOne(TeacherSocialAccounts::class, ['user_id'  =>'id']);
+    }
+
+    public function getCourses(): ActiveQuery
+    {
+        return $this->hasMany(Course::class, ['teacher_id' => 'id'])->orderBy(['created_at' => SORT_DESC]);
     }
 }
