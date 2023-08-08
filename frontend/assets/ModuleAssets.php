@@ -21,6 +21,5 @@ class ModuleAssets extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-//        'yii\bootstrap5\BootstrapAsset',
     ];
 }

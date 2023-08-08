@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ead0574821012ca731ac9a8deaec9c7",
+    "content-hash": "2406a0fff0313cc3fee2c4c9d308acf6",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1066,6 +1066,86 @@
             "time": "2020-10-15T08:29:30+00:00"
         },
         {
+            "name": "php-curl-class/php-curl-class",
+            "version": "9.17.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-curl-class/php-curl-class.git",
+                "reference": "d5542274acd2331f2562ce8c787315001685de60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-curl-class/php-curl-class/zipball/d5542274acd2331f2562ce8c787315001685de60",
+                "reference": "d5542274acd2331f2562ce8c787315001685de60",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "*",
+                "ext-gd": "*",
+                "friendsofphp/php-cs-fixer": "*",
+                "phpcompatibility/php-compatibility": "dev-develop",
+                "phpcsstandards/phpcsutils": "@alpha",
+                "phpunit/phpunit": "*",
+                "squizlabs/php_codesniffer": "*",
+                "vimeo/psalm": "*"
+            },
+            "suggest": {
+                "ext-mbstring": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Curl\\": "src/Curl/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Unlicense"
+            ],
+            "authors": [
+                {
+                    "name": "Zach Borboa"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/php-curl-class/php-curl-class/graphs/contributors"
+                }
+            ],
+            "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
+            "homepage": "https://github.com/php-curl-class/php-curl-class",
+            "keywords": [
+                "API-Client",
+                "api",
+                "class",
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http-client",
+                "http-proxy",
+                "json",
+                "php",
+                "php-curl",
+                "php-curl-library",
+                "proxy",
+                "requests",
+                "restful",
+                "web-scraper",
+                "web-scraping ",
+                "web-service",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/php-curl-class/php-curl-class/issues",
+                "source": "https://github.com/php-curl-class/php-curl-class/tree/9.17.4"
+            },
+            "time": "2023-07-10T18:03:00+00:00"
+        },
+        {
             "name": "psr/container",
             "version": "2.0.2",
             "source": {
@@ -1217,6 +1297,45 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "rahmatullo/eskiz-sms",
+            "version": "v1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Rahmatillo05/eskizuz-sms.git",
+                "reference": "a0b3c58edd6ea0b4a74d9ea8aa7e4cd86bbff903"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Rahmatillo05/eskizuz-sms/zipball/a0b3c58edd6ea0b4a74d9ea8aa7e4cd86bbff903",
+                "reference": "a0b3c58edd6ea0b4a74d9ea8aa7e4cd86bbff903",
+                "shasum": ""
+            },
+            "require": {
+                "php-curl-class/php-curl-class": "^9.17"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "rahmatullo\\eskizsms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rahmatillo05",
+                    "email": "hrrahmatillo2oo5@gmail.com"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/Rahmatillo05/eskizuz-sms/issues",
+                "source": "https://github.com/Rahmatillo05/eskizuz-sms/tree/v1.5"
+            },
+            "time": "2023-08-08T10:27:12+00:00"
         },
         {
             "name": "select2/select2",

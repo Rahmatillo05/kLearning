@@ -19,7 +19,7 @@ class m230804_162455_create_wait_list_table extends Migration
             'full_name' => $this->string()->notNull(),
             'location' => $this->string()->notNull(),
             'phone_number' => $this->string()->notNull(),
-            'status' => $this->smallInteger()->defaultValue(10),
+            'status' => $this->smallInteger()->defaultValue(0),
             'created_at' => $this->integer()
         ]);
         $this->addForeignKey('fk-to-teacher-from-wait_list', 'wait_list', 'teacher_id', 'user', 'id', 'CASCADE');
