@@ -5,6 +5,7 @@ namespace common\models\sms;
 
 use common\models\groups\WaitList;
 use common\widgets\Detect;
+use ErrorException;
 use rahmatullo\eskizsms\Eskiz;
 use Yii;
 use yii\base\Model;
@@ -13,7 +14,7 @@ class Sms extends Model
 {
     public $message;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             [['message'], 'required'],
@@ -29,17 +30,19 @@ class Sms extends Model
     }
 
     /**
-     * @throws \ErrorException
+     * @throws ErrorException
      */
-    public function sendMessage(array $selection)
+    public function sendMessage(array $selection): bool
     {
         $sms = new Eskiz(Yii::$app->params['eskiz_email'], Yii::$app->params['eskiz_key']);
         $options = $this->createSmsOptions($selection);
+
         $this->changeWaitListStatus($selection);
-        if (!empty($sms->sendSmsBatch($options))){
+        $res = $sms->sendSmsBatch($options);
+        if ($res->status == 'success') {
             return $this->saveDispatchId($options['dispatch_id']);
         }
-        return false;
+        throw new \yii\base\ErrorException($res->message);
     }
 
     public function createSmsOptions(array $selection): array
@@ -64,12 +67,13 @@ class Sms extends Model
 
     private function changeWaitListStatus(array $selection): void
     {
-        foreach ($selection as $item){
+        foreach ($selection as $item) {
             $list = WaitList::findOne($item);
             $list->status = Detect::REPLY;
             $list->save();
         }
     }
+
     public function saveDispatchId(int $dispatch_id): bool
     {
         $dispatch = SmsDispatch::findOne(['dispatch_id' => $dispatch_id]) ?? new SmsDispatch();

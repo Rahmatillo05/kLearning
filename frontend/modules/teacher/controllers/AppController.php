@@ -6,6 +6,8 @@ use common\models\groups\Room;
 use common\models\groups\WaitList;
 use common\models\sms\Sms;
 use common\widgets\Detect;
+use common\widgets\SmsProvider;
+use ErrorException;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\helpers\VarDumper;
@@ -48,20 +50,33 @@ class AppController extends Controller
         return $this->render('notification', compact('wait_list'));
     }
 
+    /**
+     * @throws ErrorException
+     */
     public function actionSendSms(): Response|string
     {
         $request = Yii::$app->request->get();
         if (isset($request['selection'])) {
             $model = new Sms();
-            if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())){
-                Yii::$app->session->setFlash('success', "Xabarlar jo'natildi!");
-                return $this->redirect(['index']);
+            if (Yii::$app->request->isPost && $model->load(Yii::$app->request->post())) {
+                if ($model->sendMessage($request['selection'])) {
+                    Yii::$app->session->setFlash('success', "Xabarlar jo'natildi!");
+                    return $this->redirect(['index']);
+                }
+                Yii::$app->session->setFlash('danger', "Xabarlarni jo'natishda xatolik yuz berdi!");
+                return $this->redirect(['notification']);
             }
             return $this->render('sms-message', compact('model'));
         }
         Yii::$app->session->setFlash('danger', "Bironta ham qator tanlanmagan!");
         return $this->redirect(['notification']);
+    }
 
+    public function actionMessages(): string
+    {
+        $messages = (new SmsProvider())::$eskiz->getMessages();
+        $messages = json_decode(json_encode($messages), true);
+        return $this->render('message', compact('messages'));
     }
 
 }

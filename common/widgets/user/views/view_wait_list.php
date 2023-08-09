@@ -41,7 +41,7 @@ echo GridView::widget([
         'full_name',
         'location',
         'phone_number',
-        'created_at:date',
+        'created_at:datetime',
         [
             'class' => ActionColumn::class,
             'template' => "{send-sms} {called}",

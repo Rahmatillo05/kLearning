@@ -16,6 +16,12 @@ use yii\helpers\Url; ?>
                     <div class="notification bg-primary rounded-circle"></div>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link nav-icon-hover" href="<?= Url::to(['/teacher/app/messages']) ?>">
+                    <i class="ti ti-message"></i>
+                    <div class="notification bg-primary rounded-circle"></div>
+                </a>
+            </li>
         </ul>
         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
