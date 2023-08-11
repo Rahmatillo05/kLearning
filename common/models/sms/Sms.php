@@ -37,9 +37,9 @@ class Sms extends Model
         $sms = new Eskiz(Yii::$app->params['eskiz_email'], Yii::$app->params['eskiz_key']);
         $options = $this->createSmsOptions($selection);
 
-        $this->changeWaitListStatus($selection);
         $res = $sms->sendSmsBatch($options);
         if ($res->status == 'success') {
+            $this->changeWaitListStatus($selection);
             return $this->saveDispatchId($options['dispatch_id']);
         }
         throw new \yii\base\ErrorException($res->message);

@@ -79,4 +79,16 @@ class AppController extends Controller
         return $this->render('message', compact('messages'));
     }
 
+    public function actionCalled($id): Response
+    {
+        $model = WaitList::findOne($id);
+        $model->status = Detect::REPLY;
+        if ($model->save()){
+            Yii::$app->session->setFlash('success', 'O\'quvchi ogohlantirildi');
+        } else{
+            Yii::$app->session->setFlash('danger', 'O\'quvchi ogohlantirishni saqlashda xatolik yuz berdi');
+        }
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
 }

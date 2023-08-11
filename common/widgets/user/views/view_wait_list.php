@@ -44,13 +44,15 @@ echo GridView::widget([
         'created_at:datetime',
         [
             'class' => ActionColumn::class,
-            'template' => "{send-sms} {called}",
+            'template' => "{called}",
             'buttons' => [
-                'send-sms' => function ($url) {
-                    return Html::a('<i class="ti ti-message"></i>', $url, ['class' => 'btn btn-sm btn-success']);
-                },
                 'called' => function ($url) {
-                    return Html::a('<i class="ti ti-phone-call"></i>', $url, ['class' => 'btn btn-sm btn-primary']);
+                    return Html::a('<i class="ti ti-phone-call"></i>', $url, [
+                        'class' => 'btn btn-sm btn-primary',
+                        'data-bs-toggle' => "tooltip",
+                        'data-bs-placement' => "bottom",
+                        'data-bs-title' => "Telefon orqali ogohlantirish"
+                    ]);
                 }
             ]
         ]
