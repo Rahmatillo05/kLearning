@@ -8,7 +8,6 @@ use common\widgets\Tools;
 use yii\helpers\Url;
 
 ?>
-hello
 <?php
 if (!$model) {
    echo "Malumotlar topilmadi"; 
