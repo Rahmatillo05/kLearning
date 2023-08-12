@@ -79,6 +79,7 @@ class AppController extends Controller
         return $this->render('message', compact('messages'));
     }
 
+   
     public function actionCalled($id): Response
     {
         $model = WaitList::findOne($id);
