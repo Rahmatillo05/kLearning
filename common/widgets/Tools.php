@@ -10,6 +10,8 @@ use common\models\user\UserRole;
 use Yii;
 use yii\bootstrap5\Html;
 
+use function PHPUnit\Framework\isNull;
+
 class Tools
 {
     const STATUS_DELETED = 0;
@@ -179,15 +181,19 @@ class Tools
     public static function renderTeacherSocials(TeacherSocialAccounts|null $socialAccounts, bool $for_backend = false): string
     {
         $icons = '<ul class="ftco-social text-center">';
-        $attributes = array_slice($socialAccounts->attributes, 2);
-        foreach ($attributes as $key => $val) {
-            if ($val) {
-                if ($key == 'email') {
-                    $icons .= '<li class="ftco-animate"><a class="text-dark" href="' . $val . '"><span class="ti ti-brand-google"></span></a></li>';
+        if (!isNull($socialAccounts)) {
+            $attributes = array_slice($socialAccounts->attributes, 2);
+            foreach ($attributes as $key => $val) {
+                if ($val) {
+                    if ($key == 'email') {
+                        $icons .= '<li class="ftco-animate"><a class="text-dark" href="' . $val . '"><span class="ti ti-brand-google"></span></a></li>';
+                    }
+                    $icons .= '<li class="ftco-animate"><a class="text-dark" href="' . $val . '"><span class="ti ti-brand-' . $key . '"></span></a></li>';
                 }
-                $icons .= '<li class="ftco-animate"><a class="text-dark" href="' . $val . '"><span class="ti ti-brand-' . $key . '"></span></a></li>';
             }
-
+        }
+        else{
+            return "";
         }
         $icons .= '</ul>';
         return $icons;
