@@ -1,5 +1,6 @@
 <?php
 
+use common\widgets\Tools;
 use yii\helpers\Url; ?>
 
 <header class="app-header">
@@ -12,8 +13,7 @@ use yii\helpers\Url; ?>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav-icon-hover" href="<?= Url::to(['/teacher/app/notification']) ?>">
-                    <i class="ti ti-bell-ringing"></i>
-                    <div class="notification bg-primary rounded-circle"></div>
+                    <?= Tools::checkWaitList(Yii::$app->user->id) ?>
                 </a>
             </li>
             <li class="nav-item">

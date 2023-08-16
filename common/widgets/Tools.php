@@ -4,6 +4,7 @@ namespace common\widgets;
 
 use common\models\groups\FamilyList;
 use common\models\groups\LessonSchedule;
+use common\models\groups\WaitList;
 use common\models\user\TeacherSocialAccounts;
 use common\models\user\User;
 use common\models\user\UserRole;
@@ -197,5 +198,16 @@ class Tools
         }
         $icons .= '</ul>';
         return $icons;
+    }
+
+    public static function checkWaitList(int $user_id)
+    {
+        $wait_list = WaitList::findAll(['teacher_id' => $user_id, 'status' => Detect::NOT_REPLY]);
+
+        if (!empty($wait_list)){
+            return '<i class="ti ti-bell-ringing"></i>
+                    <div class="notification bg-primary rounded-circle"></div>';
+        }
+        return '<i class="ti ti-bell"></i>';
     }
 }
