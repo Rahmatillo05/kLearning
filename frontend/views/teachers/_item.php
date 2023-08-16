@@ -8,6 +8,10 @@ use common\widgets\Tools;
 use yii\helpers\Url;
 
 ?>
+<<<<<<< HEAD
+
+=======
+>>>>>>> a62e28022863498a20343be7785a84cce279756d
 <?php
 if (!$model) {
    echo "Malumotlar topilmadi"; 

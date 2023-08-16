@@ -28,6 +28,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
     <?= $this->render('navbar') ?>
     <?=  $this->render('banner') ?>
+    <?= \common\widgets\Alert::widget() ?>
     <?= $content ?>
     <?= $this->render('footer') ?>
     <?php $this->endBody() ?>
