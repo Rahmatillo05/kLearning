@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = ['label' => 'O\'qituvchilar', 'url' => ['index'
                 <div class="staff-2 w-100">
                     <div class="img-wrap d-flex align-items-stretch">
                         <div class="img align-self-stretch d-flex align-items-end"
-                             style="background-image: url(<?= $model->userInfo->image ? Yii::getAlias('@images') . '/' . $model->userInfo->image : '' ?>);">
+                             style="background-image: url(<?= $model->userInfo ? Yii::getAlias('@images') . '/' . $model->userInfo->image : '' ?>);">
                             <div class="text mb-4 text-md-center">
                                 <h3><?= $model->full_name ?></h3>
                                 <h5 class="position mb-2 text-dark"><?= $model->userInfo->job ?? '' ?></h5>
