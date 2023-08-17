@@ -17,26 +17,50 @@ use yii\helpers\Url; ?>
             <ul id="sidebarnav">
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Home</span>
+                    <span class="hide-menu">Menu</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/teacher']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/owner']) ?>" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
-                        <span class="hide-menu">Dashboard</span>
+                        <span class="hide-menu">Bosh menu</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">User Controls</span>
+                    <span class="hide-menu">Foydalanuvchilar</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/teacher/user']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/owner/user']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-users"></i>
                         </span>
-                        <span class="hide-menu">Users</span>
+                        <span class="hide-menu">O'qituvchilar</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/owner/user']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-users"></i>
+                        </span>
+                        <span class="hide-menu">O'quvchilar</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/owner/user']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-users"></i>
+                        </span>
+                        <span class="hide-menu">Meneger</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/owner/user']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-users"></i>
+                        </span>
+                        <span class="hide-menu">Ota-onalar</span>
                     </a>
                 </li>
             </ul>

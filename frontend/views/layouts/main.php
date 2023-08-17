@@ -3,6 +3,7 @@
 /** @var yii\web\View $this */
 /** @var string $content */
 
+use common\widgets\Alert;
 use frontend\assets\AppAsset;
 use yii\bootstrap5\Html;
 
@@ -28,7 +29,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
     <?= $this->render('navbar') ?>
     <?=  $this->render('banner') ?>
-    <?= \common\widgets\Alert::widget() ?>
+    <?= Alert::widget() ?>
     <?= $content ?>
     <?= $this->render('footer') ?>
     <?php $this->endBody() ?>
