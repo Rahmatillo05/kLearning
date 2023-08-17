@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\bootstrap5\DetailView;
 
 /** @var yii\web\View $this */
 /** @var common\models\contact\Contact $model */
