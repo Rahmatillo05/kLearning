@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\contact\Contact;
 use common\widgets\Detect;
 use frontend\models\LoginForm;
 use frontend\models\SignupForm;
@@ -10,7 +11,8 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-
+use frontend\models\ContactForm;
+use yii\helpers\VarDumper;
 /**
  * Site controller
  */
@@ -95,8 +97,24 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->email != '' && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Fikringiz uchun rahmat!');
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', 'Fikringiz saqlanmadi!');
+            }
 
+            return $this->refresh();
+        }
 
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
     public function actionLogout(): Response
     {
         Yii::$app->user->logout();
@@ -125,6 +143,7 @@ class SiteController extends Controller
 
     public function actionAbout(): string
     {
-        return $this->render('about');
+        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->all();
+        return $this->render('about',compact('datas'));
     }
 }
