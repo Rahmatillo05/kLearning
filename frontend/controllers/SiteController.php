@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\contact\Contact;
 use common\widgets\Detect;
 use frontend\models\LoginForm;
 use frontend\models\SignupForm;
@@ -142,6 +143,7 @@ class SiteController extends Controller
 
     public function actionAbout(): string
     {
-        return $this->render('about');
+        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->all();
+        return $this->render('about',compact('datas'));
     }
 }
