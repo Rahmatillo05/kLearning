@@ -40,16 +40,6 @@ class ComentController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Contact::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
         ]);
 
         return $this->render('index', [
