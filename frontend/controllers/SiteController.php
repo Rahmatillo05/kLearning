@@ -10,7 +10,8 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
-
+use frontend\models\ContactForm;
+use yii\helpers\VarDumper;
 /**
  * Site controller
  */
@@ -95,8 +96,24 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->rating != '' && $model->email != '' && $model->save()) {
+                Yii::$app->session->setFlash('success', 'Fikringiz uchun rahmat!');
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', 'Fikringiz saqlanmadi!');
+            }
 
+            return $this->refresh();
+        }
 
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
     public function actionLogout(): Response
     {
         Yii::$app->user->logout();
