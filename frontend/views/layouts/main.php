@@ -32,6 +32,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     <?= Alert::widget() ?>
     <?= $content ?>
     <?= $this->render('footer') ?>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
     <?php $this->endBody() ?>
     </body>
     </html>
