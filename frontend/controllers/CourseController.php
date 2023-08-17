@@ -69,12 +69,22 @@ class CourseController extends Controller
         $model = new WaitList();
 
         if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate() && $model->save()) {
-                Yii::$app->session->setFlash('success', "Murojatingiz uchun rahmat! Tez orada siz bilan bog'lanishadi!");
-                return $this->redirect(['index']);
-            } else {
-                Yii::$app->session->setFlash('error', "Saqlashda xatolik yuz berdi! Iltimos qaytadan urinib ko'ring!");
-                return $this->refresh();
+            $user = WaitList::findOne([
+                'course_id' => $model->course_id,
+                'teacher_id' => $model->teacher_id,
+                'full_name' => $model->full_name
+            ]);
+            if (!$user) {
+                if ($model->validate() && $model->save()) {
+                    Yii::$app->session->setFlash('success', "Murojatingiz uchun rahmat! Tez orada siz bilan bog'lanishadi!");
+                    return $this->redirect(Yii::$app->request->referrer);
+                } else {
+                    Yii::$app->session->setFlash('error', "Saqlashda xatolik yuz berdi! Iltimos qaytadan urinib ko'ring!");
+                    return $this->redirect(Yii::$app->request->referrer);
+                }
+            } else{
+                Yii::$app->session->setFlash('error', "Siz allaqachon qabul ro'yhatida mavjudsiz!");
+                return $this->redirect(Yii::$app->request->referrer);
             }
         }
 
