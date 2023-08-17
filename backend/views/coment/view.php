@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap5\DetailView;
+use yii\widgets\DetailView;
+use common\widgets\Tools;
 
 /** @var yii\web\View $this */
 /** @var common\models\contact\Contact $model */
@@ -28,14 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
+        'options' => [
+            'class' => 'table table-bordered'
+        ],
         'attributes' => [
             'id',
             'username',
             'email:email',
             'title',
             'body',
-            'status',
-            'rating',
+            [
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    return Tools::setStatusBadge($model->status);
+                },
+                'format' => 'html'
+            ],
+
         ],
     ]) ?>
 
