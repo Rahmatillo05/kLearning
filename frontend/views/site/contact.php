@@ -55,12 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
                 
-                <?= $form->field($model, 'status')->widget(Select2::class,[
-                 'data' =>[
-                      '10'=>'Active', '0' => 'inActive'
-                 ],
-                'hideSearch' => true
-                 ]) ?>
+                <?= $form->field($model, 'status')->hiddenInput(['value' => 0],)->label(false) ?>
                 <div class="form-group">
                     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
