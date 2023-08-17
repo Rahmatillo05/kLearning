@@ -22,9 +22,7 @@ use kartik\select2\Select2;
     <?= $form->field($model, 'body')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'status')->widget(Select2::class,[
-                 'data' =>[
-                      '10'=>'Active', '0' => 'inActive'
-                 ],
+                 'data' => $model->userStatusList(),
                 'hideSearch' => true
                  ]) ?>
 
