@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'username',
             'email:email',
             'title',
-            'body',
+            // 'body',
             [
                 'attribute' => 'status',
                 'value' => function (Contact $model) {
