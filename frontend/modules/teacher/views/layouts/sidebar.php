@@ -17,7 +17,7 @@ use yii\helpers\Url; ?>
             <ul id="sidebarnav">
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Home</span>
+                    <span class="hide-menu">Menu</span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= Url::to(['/teacher']) ?>" aria-expanded="false">
@@ -29,7 +29,7 @@ use yii\helpers\Url; ?>
                 </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">User Controls</span>
+                    <span class="hide-menu">Kurslar</span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= Url::to(['/teacher/group']) ?>" aria-expanded="false">
