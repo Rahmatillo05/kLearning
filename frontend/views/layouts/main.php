@@ -5,6 +5,8 @@
 
 use common\widgets\Alert;
 use frontend\assets\AppAsset;
+use lavrentiev\widgets\toastr\NotificationBase;
+use lavrentiev\widgets\toastr\NotificationFlash;
 use yii\bootstrap5\Html;
 
 AppAsset::register($this);
@@ -29,7 +31,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 
     <?= $this->render('navbar') ?>
     <?=  $this->render('banner') ?>
-    <?= Alert::widget() ?>
+    <?= NotificationFlash::widget([
+        'options' => [
+            "positionClass" => NotificationBase::POSITION_TOP_FULL_WIDTH
+        ]
+    ]) ?>
     <?= $content ?>
     <?= $this->render('footer') ?>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>

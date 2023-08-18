@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2406a0fff0313cc3fee2c4c9d308acf6",
+    "content-hash": "68191c7b84da9d2128959f276bf9e99e",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -93,6 +93,24 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/mathiasbynens/punycode.js/zipball/38c8d3131a82567bfef18da09f7f4db68c84f8a3",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
+            },
+            "type": "bower-asset"
+        },
+        {
+            "name": "bower-asset/toastr",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:johnpapa/toastr-bower.git",
+                "reference": "e648a870a60103bbc3986c1fe2b2de86ea4a9569"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/johnpapa/toastr-bower/zipball/e648a870a60103bbc3986c1fe2b2de86ea4a9569",
+                "reference": "e648a870a60103bbc3986c1fe2b2de86ea4a9569"
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.6.3"
             },
             "type": "bower-asset"
         },
@@ -1014,6 +1032,58 @@
                 "source": "https://github.com/kartik-v/yii2-widget-timepicker/tree/v1.0.5"
             },
             "time": "2021-10-28T03:49:56+00:00"
+        },
+        {
+            "name": "lavrentiev/yii2-toastr",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lavrentiev/yii2-toastr.git",
+                "reference": "7acb5ac0838752449529f664b2c32a77a824a21d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lavrentiev/yii2-toastr/zipball/7acb5ac0838752449529f664b2c32a77a824a21d",
+                "reference": "7acb5ac0838752449529f664b2c32a77a824a21d",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/toastr": "^2.1",
+                "yiisoft/yii2": "~2.0"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "lavrentiev\\widgets\\toastr\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Eugene Lavrentiev (RyanTedder)",
+                    "email": "lavrentiev.e@gmail.com",
+                    "homepage": "https://github.com/lavrentiev"
+                }
+            ],
+            "description": "Simple javascript toast notifications",
+            "homepage": "https://github.com/lavrentiev/yii2-toastr",
+            "keywords": [
+                "extension",
+                "jquery",
+                "notification",
+                "toastr",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/lavrentiev/yii2-toastr/issues",
+                "source": "https://github.com/lavrentiev/yii2-toastr"
+            },
+            "abandoned": true,
+            "time": "2018-01-14T13:22:15+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -6463,7 +6533,8 @@
         "kartik-v/yii2-widget-switchinput": 20,
         "kartik-v/yii2-editable": 20,
         "kartik-v/yii2-widget-datetimepicker": 20,
-        "kartik-v/yii2-icons": 20
+        "kartik-v/yii2-icons": 20,
+        "lavrentiev/yii2-toastr": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

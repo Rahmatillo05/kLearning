@@ -18,6 +18,9 @@ use Yii;
  */
 class Contact extends \yii\db\ActiveRecord
 {
+    const STATUS_DELETED = 0;
+    const STATUS_INACTIVE = 9;
+    const STATUS_ACTIVE = 10;
     /**
      * {@inheritdoc}
      */
@@ -52,6 +55,14 @@ class Contact extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Sarlavha'),
             'body' => Yii::t('app', 'Ma\'lumot'),
             'status' => Yii::t('app', 'Status'),
+        ];
+    }
+    public function userStatusList()
+    {
+        return [
+            self::STATUS_DELETED => "O'chirilgan",
+            self::STATUS_INACTIVE => "NoFaol",
+            self::STATUS_ACTIVE => "Faol"
         ];
     }
 }
