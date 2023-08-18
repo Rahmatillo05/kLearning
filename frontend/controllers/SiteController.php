@@ -143,7 +143,7 @@ class SiteController extends Controller
 
     public function actionAbout(): string
     {
-        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->all();
+        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->limit(8)->all();
         return $this->render('about',compact('datas'));
     }
 }

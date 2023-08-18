@@ -24,7 +24,8 @@
         "kartik-v/yii2-widget-datetimepicker": "dev-master",
         "kartik-v/yii2-widget-timepicker": "*",
         "kartik-v/yii2-icons": "@dev",
-        "rahmatullo/eskiz-sms": "^1.5"
+        "rahmatullo/eskiz-sms": "^1.5",
+        "lavrentiev/yii2-toastr": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

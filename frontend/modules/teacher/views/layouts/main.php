@@ -6,6 +6,8 @@
 
 use common\widgets\Alert;
 use frontend\assets\ModuleAssets;
+use lavrentiev\widgets\toastr\NotificationBase;
+use lavrentiev\widgets\toastr\NotificationFlash;
 use yii\bootstrap5\Html;
 
 ModuleAssets::register($this);
@@ -29,7 +31,12 @@ ModuleAssets::register($this);
         <div class="body-wrapper">
             <?= $this->render('header') ?>
             <div class="container-fluid">
-                <?= Alert::widget() ?>
+                <?= NotificationFlash::widget([
+                    'options' => [
+                        'closeButton' => true,
+                        "positionClass" => NotificationBase::POSITION_TOP_CENTER
+                    ]
+                ]) ?>
                 <?= $content ?>
             </div>
         </div>
