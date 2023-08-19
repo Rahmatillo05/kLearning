@@ -48,7 +48,7 @@ class DtmController extends BaseController
     }
 
 
-    public function actionSubjectCreate()
+    public function actionSubjectCreate(): Response
     {
         $model = new Subject();
 
