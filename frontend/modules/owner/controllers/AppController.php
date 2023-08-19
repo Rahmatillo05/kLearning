@@ -2,10 +2,10 @@
 
 namespace frontend\modules\owner\controllers;
 
-use yii\web\Controller;
+use frontend\controllers\ModuleController;
 use yii\web\ErrorAction;
 
-class AppController extends Controller
+class AppController extends ModuleController
 {
     public function actions()
     {
