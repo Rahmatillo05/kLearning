@@ -1,6 +1,6 @@
 <?php
 return [
-    'id' => 'app-owner',
+    'id' => 'owner',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\modules\owner\controllers',
     'defaultRoute' => 'app',

@@ -32,7 +32,7 @@ use yii\helpers\Url; ?>
                     <span class="hide-menu">Foydalanuvchilar</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/owner/user']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/owner/teacher']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-users"></i>
                         </span>
