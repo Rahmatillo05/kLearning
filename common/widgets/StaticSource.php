@@ -17,5 +17,12 @@ class StaticSource
         ];
     }
 
-
+    public static function dtmStatus(): array
+    {
+        return [
+          Detect::STATUS_ACTIVE => "Qabul ochiq",
+          Detect::STATUS_INACTIVE => "Natija kutilmoqda",
+          Detect::STATUS_DELETED => "Test yakunlangan"
+        ];
+    }
 }
