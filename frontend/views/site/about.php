@@ -8,7 +8,14 @@ $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<section class="ftco-section ftco-about img">
+<?php
+if (!$model) {
+  ?>
+  <h1>No data</h1>
+  <?php
+}else{
+  ?>
+  <section class="ftco-section ftco-about img">
   <div class="container">
     <div class="row d-flex">
       <div class="col-md-12 about-intro">
@@ -35,7 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
   </div>
-</section>
+</section><?php
+}
+?>
 
 <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_4.jpg);">
   <div class="overlay"></div>
