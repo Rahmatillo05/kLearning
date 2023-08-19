@@ -3,7 +3,7 @@
 use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
 use yii\helpers\Url;
-
+$this->title = "About Setting"
 ?>
 <div class="contact-index">
     <?php $form = ActiveForm::begin([
