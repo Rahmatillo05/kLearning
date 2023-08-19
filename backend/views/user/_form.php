@@ -15,7 +15,6 @@ use yii\widgets\MaskedInput;
 
 <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
-
 <?= $form->field($model, 'tel_number')->widget(MaskedInput::class, [
     'mask' => '+\9\98 99 999-99-99',
     'options' => [
