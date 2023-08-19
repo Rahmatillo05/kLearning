@@ -102,6 +102,18 @@ use yii\helpers\Url; ?>
                 </li>
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">DTM</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/dtm/subject']) ?>" aria-expanded="false">
+                <span>
+                  <i class="ti ti-math"></i>
+                </span>
+                        <span class="hide-menu">Subjects</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Dev tools</span>
                 </li>
                 <li class="sidebar-item">
