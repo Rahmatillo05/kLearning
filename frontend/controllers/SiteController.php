@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\about\About;
 use common\models\contact\Contact;
 use common\widgets\Detect;
 use frontend\models\LoginForm;
@@ -144,6 +145,7 @@ class SiteController extends Controller
     public function actionAbout(): string
     {
         $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->limit(8)->all();
-        return $this->render('about',compact('datas'));
+        $model = About::find()->one();
+        return $this->render('about',compact('datas', 'model'));
     }
 }

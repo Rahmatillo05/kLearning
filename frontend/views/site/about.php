@@ -8,26 +8,33 @@ $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<section class="ftco-section ftco-about img">
+<?php
+if (!$model) {
+  ?>
+  <h1>No data</h1>
+  <?php
+}else{
+  ?>
+  <section class="ftco-section ftco-about img">
   <div class="container">
     <div class="row d-flex">
       <div class="col-md-12 about-intro">
         <div class="row">
           <div class="col-md-6 d-flex">
             <div class="d-flex about-wrap">
-              <div class="img d-flex align-items-center justify-content-center" style="background-image:url(images/about-1.jpg);">
+              <div class="img d-flex align-items-center justify-content-center" style="background-image:url(<?= Yii::getAlias('@images') . "/{$model->first_image}" ?>);">
               </div>
-              <div class="img-2 d-flex align-items-center justify-content-center" style="background-image:url(images/about.jpg);">
+              <div class="img-2 d-flex align-items-center justify-content-center" style="background-image:url(<?= Yii::getAlias('@images') . "/{$model->last_image}" ?>);">
               </div>
             </div>
           </div>
           <div class="col-md-6 pl-md-5 py-5">
             <div class="row justify-content-start pb-3">
               <div class="col-md-12 heading-section ftco-animate">
-                <span class="subheading">Enhanced Your Skills</span>
-                <h2 class="mb-4">Learn Anything You Want Today</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                <p><a href="#" class="btn btn-primary">Get in touch with us</a></p>
+                <span class="subheading"><?= $model['motiv'] ?></span>
+                <h2 class="mb-4"><?= $model['title'] ?></h2>
+                <p>text</p>
+                <p><a href="#" class="btn btn-primary"><?= $model['text'] ?></a></p>
               </div>
             </div>
           </div>
@@ -35,7 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
   </div>
-</section>
+</section><?php
+}
+?>
 
 <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_4.jpg);">
   <div class="overlay"></div>
