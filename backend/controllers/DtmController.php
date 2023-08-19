@@ -15,6 +15,10 @@ use yii\web\Response;
 class DtmController extends BaseController
 {
 
+    public function actionIndex()
+    {
+        return $this->render('dtm_index');
+    }
 
     public function actionSubject(): string
     {
