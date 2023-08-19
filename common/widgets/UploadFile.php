@@ -9,7 +9,7 @@ class UploadFile
 {
     public static function saveFile(UploadedFile $file): bool|string
     {
-        $name = 'IMG_' . date('Ymd_His') . "." . $file->extension;
+        $name = 'IMG_' . date('Ymd_His') . "{$file->baseName}." . $file->extension;
         $path = Yii::$app->params['uploadPath'] . $name;
         if ($file->saveAs($path)) {
             return $name;

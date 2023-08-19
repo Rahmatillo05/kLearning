@@ -11,6 +11,7 @@ use common\models\user\UserRole;
 use Yii;
 use yii\bootstrap5\Html;
 
+use yii\web\UploadedFile;
 use function PHPUnit\Framework\isNull;
 
 class Tools
@@ -210,4 +211,12 @@ class Tools
         }
         return '<i class="ti ti-bell"></i>';
     }
+    public static function saveFile(UploadedFile $file): bool|string
+ {
+     $name = "image_".Yii::$app->security->generateRandomString(5).".{$file->extension}";
+     if($file->saveAs(Yii::getAlias('@uploadFile' )."/$name")){
+         return $name;
+     }
+     return false;
+ }
 }
