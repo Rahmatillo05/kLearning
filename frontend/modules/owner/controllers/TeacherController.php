@@ -3,19 +3,15 @@
 namespace frontend\modules\owner\controllers;
 
 use backend\controllers\BaseController;
-use common\models\user\TeacherSocialAccounts;
+use common\models\course\Course;
 use common\models\user\User;
-use common\models\user\UserInfo;
-use common\models\user\UserRole;
 use common\widgets\Detect;
 use common\widgets\Tools;
-use common\widgets\UploadFile;
 use Yii;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\web\UploadedFile;
 
 class TeacherController extends BaseController
 {
@@ -81,11 +77,23 @@ class TeacherController extends BaseController
         $user->save();
         return $this->redirect(['index']);
     }
+
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionView(int $id): string
     {
         $model = $this->findModel($id);
-        return $this->render('view', compact('model'));
+        $dataProvider = Tools::active();
+        return $this->render('view',[
+            'model' => $model,
+            'dataProvider' => $dataProvider,
+        ]);
     }
+
+    /**
+     * @throws NotFoundHttpException
+     */
     protected function findModel(int $id): User
     {
         if (($model = User::findOne(['id' => $id])) !== null) {
