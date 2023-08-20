@@ -15,23 +15,21 @@ use yii\helpers\Url;
         <?= $model->title ?>
         <?= Detect::dtmStatus($model->status) ?>
     </div>
-    <img src="<?= Yii::$app->params['defaultImages'] . "/test.jpg" ?>" class="card-img rounded-0"
-         alt="<?= $model->title ?>">
-    <div class="card-body">
+    <div class="card-body" style="background-image: url(<?= Yii::getAlias('@images') . "/IMG_20230819_123141thumb-1920-834631.jpg" ?>);">
         <p>
-            <b>Testda qatnashgan o'quvchilar soni: 50</b>
+            <b style="color: white;">Testda qatnashgan o'quvchilar soni: 50</b>
         </p>
         <p>
-            <b>O'rtacha ball: 150</b>
+            <b style="color: white;">O'rtacha ball: 150</b>
         </p>
         <p>
-            <b>Eng yuqori ball: 190</b>
+            <b style="color: white;">Eng yuqori ball: 190</b>
         </p>
         <p>
-            <b>Eng past ball: 90</b>
+            <b style="color: white;">Eng past ball: 90</b>
         </p>
-        <p>
+  
             <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a>
-        </p>
+   
     </div>
 </div>
