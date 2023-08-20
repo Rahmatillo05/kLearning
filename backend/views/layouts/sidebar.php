@@ -60,6 +60,14 @@ use yii\helpers\Url; ?>
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/about']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">About</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= Url::to(['/course']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-book"></i>
@@ -98,12 +106,21 @@ use yii\helpers\Url; ?>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= Url::to(['/dtm/subject']) ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-math"></i>
-                </span>
+                        <span>
+                          <i class="ti ti-math"></i>
+                        </span>
                         <span class="hide-menu">Subjects</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/dtm/index']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-a-b"></i>
+                        </span>
+                        <span class="hide-menu">DTM Tests</span>
+                    </a>
+                </li>
+
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">Dev tools</span>

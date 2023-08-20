@@ -2,7 +2,9 @@
 
 namespace backend\controllers;
 
+use common\models\dtm\Dtm;
 use common\models\dtm\Subject;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -15,7 +17,36 @@ use yii\web\Response;
 class DtmController extends BaseController
 {
 
+    public function actionIndex()
+    {
+        $dtm = new ActiveDataProvider([
+            'query' => Dtm::find(),
+            'pagination' => [
+                'pageSize' => 50
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
+        ]);
+        return $this->render('dtm_index', compact('dtm'));
+    }
 
+    public function actionNew()
+    {
+        $model = new Dtm();
+        if ($this->request->isPost && $model->load($this->request->post())){
+            if ($model->save()){
+                Yii::$app->session->setFlash('success', "Starting new challenge");
+                return $this->redirect(['index']);
+            }else{
+                Yii::$app->session->setFlash('error', "Ma'lumotlarni saqlab bo'lmadi!");
+                $model->loadDefaultValues();
+            }
+        }
+        return $this->render('_dtm_form', compact('model'));
+    }
     public function actionSubject(): string
     {
         $dataProvider = new ActiveDataProvider([
@@ -44,7 +75,7 @@ class DtmController extends BaseController
     }
 
 
-    public function actionSubjectCreate()
+    public function actionSubjectCreate(): Response
     {
         $model = new Subject();
 
