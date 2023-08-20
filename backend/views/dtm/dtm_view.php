@@ -25,8 +25,8 @@ $this->title = $model->title;
                 <?= Detect::dtmStatus($model->status) ?>
             </h3>
             <div>
-                <a href="" class="btn btn-primary">Update</a>
-                <a href="" class="btn btn-danger"><i class="ti ti-trash"></i> Delete</a>
+                <a href="<?= Url::to(['/dtm/update', 'id' => $model->id]) ?>" class="btn btn-primary">Update</a>
+                <a href="<?= Url::to(['/dtm/delete', 'id' => $model->id]) ?>" data-method="post" class="btn btn-danger"><i class="ti ti-trash"></i> Delete</a>
             </div>
         </div>
         <div class="card-body">
@@ -41,7 +41,7 @@ $this->title = $model->title;
             </div>
             <?php if ($model->dtmPupils): ?>
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="dtm_result">
                         <thead>
                         <tr>
                             <th>T/R</th>
@@ -95,14 +95,15 @@ echo "<div class='modal-body'></div>";
 Modal::end();
 
 $js = <<<JS
-   $('.add-score').click(function (e){
+   $(document).ready(function (){
+       $('.add-score').click(function (e){
       e.preventDefault();
       let modal = $('#add-score');
       modal.modal('show');
       let url = $(this).attr('href');
       send(url, $('.modal-body'));
    });
-    function send(url, modal) {
+       function send(url, modal) {
       $.ajax({
             url:url,
             method:'POST',
@@ -118,6 +119,7 @@ $js = <<<JS
             async:true
       })
     }
+   });
 JS;
 
 $this->registerJs($js);

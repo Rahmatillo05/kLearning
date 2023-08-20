@@ -8,9 +8,7 @@ use common\models\dtm\DtmResult;
 use common\models\dtm\Subject;
 use Yii;
 use yii\data\ActiveDataProvider;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 
 /**
@@ -68,10 +66,26 @@ class DtmController extends BaseController
         return $this->redirect(['view', 'id' => $model->dtm_id]);
     }
 
+    public function actionUpdate(int $id): Response|string
+    {
+        $model = $this->findDtmModel($id);
+
+        if ($model->load($this->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', "Update DTM information");
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                Yii::$app->session->setFlash('error', 'Ma\'lumotlarni saqlab bo\'lmadi!');
+                $model->loadDefaultValues();
+            }
+        }
+        return $this->render('_dtm_form', compact('model'));
+    }
+
     /**
      * @throws NotFoundHttpException
      */
-    public function actionPlusScore($pupil_id)
+    public function actionPlusScore($pupil_id): Response|array
     {
         $result = $this->findDtmResultModel($pupil_id);
         $response = [];
