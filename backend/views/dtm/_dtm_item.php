@@ -9,7 +9,12 @@ use common\widgets\Detect;
 use yii\helpers\Url;
 
 ?>
-
+<style>
+    .bgimg {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+</style>
 <div class="card">
     <div class="card-header card-title">
         <?= $model->title ?>
@@ -28,8 +33,8 @@ use yii\helpers\Url;
         <p>
             <b style="color: white;">Eng past ball: 90</b>
         </p>
-  
-            <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a>
-   
+
+        <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a>
+
     </div>
 </div>
