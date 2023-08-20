@@ -33,8 +33,7 @@ if (!$model) {
               <div class="col-md-12 heading-section ftco-animate">
                 <span class="subheading"><?= $model['motiv'] ?></span>
                 <h2 class="mb-4"><?= $model['title'] ?></h2>
-                <p>text</p>
-                <p><a href="#" class="btn btn-primary"><?= $model['text'] ?></a></p>
+                <p><?= $model['text'] ?></p>
               </div>
             </div>
           </div>

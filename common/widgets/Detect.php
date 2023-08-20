@@ -31,4 +31,14 @@ class Detect
         $base_role = UserRole::findOne(['role_power' => $user_role]);
         return "/".strtolower($base_role->role_name);
     }
+
+    public static function dtmStatus(int $status): string
+    {
+        if ($status == self::STATUS_DELETED) {
+            return "<span class='badge bg-danger rounded-3 fw-semibold'>Test yakunlangan</span>";
+        } elseif ($status == self::STATUS_INACTIVE) {
+            return "<span class='badge bg-warning rounded-3 fw-semibold'>Tekshirilmoqda</span>";
+        }
+        return "<span class='badge bg-success rounded-3 fw-semibold'>Qabul ochiq</span>";
+    }
 }
