@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1 class="card-header card-title"><?= Html::encode($this->title) ?></h1>
 
-    <div class="card-body">
+    <div class="card-body ">
         <p>
             <?= $this->render('_form', compact('model')) ?>
         </p>
@@ -31,8 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-
-//                'id',
                 'name',
                 [
                     'class' => ActionColumn::class,
