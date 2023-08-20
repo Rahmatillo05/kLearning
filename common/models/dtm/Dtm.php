@@ -3,6 +3,8 @@
 namespace common\models\dtm;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "dtm".
@@ -15,7 +17,7 @@ use Yii;
  * @property DtmPupil[] $dtmPupils
  * @property DtmResult[] $dtmResults
  */
-class Dtm extends \yii\db\ActiveRecord
+class Dtm extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -53,9 +55,9 @@ class Dtm extends \yii\db\ActiveRecord
     /**
      * Gets query for [[DtmPupils]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getDtmPupils()
+    public function getDtmPupils(): ActiveQuery
     {
         return $this->hasMany(DtmPupil::class, ['dtm_id' => 'id']);
     }
@@ -63,10 +65,10 @@ class Dtm extends \yii\db\ActiveRecord
     /**
      * Gets query for [[DtmResults]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getDtmResults()
+    public function getDtmResults(): ActiveQuery
     {
-        return $this->hasMany(DtmResult::class, ['dtm_id' => 'id']);
+        return $this->hasMany(DtmResult::class, ['dtm_id' => 'id'])->orderBy(['total' => SORT_DESC]);
     }
 }

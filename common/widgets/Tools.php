@@ -2,6 +2,7 @@
 
 namespace common\widgets;
 
+use common\models\course\Course;
 use common\models\groups\FamilyList;
 use common\models\groups\LessonSchedule;
 use common\models\groups\WaitList;
@@ -11,7 +12,7 @@ use common\models\user\UserRole;
 use Yii;
 use yii\bootstrap5\Html;
 
-use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
 use function PHPUnit\Framework\isNull;
 
 class Tools
@@ -201,7 +202,7 @@ class Tools
         return $icons;
     }
 
-    public static function checkWaitList(int $user_id): string
+    public static function checkWaitList(int $user_id)
     {
         $wait_list = WaitList::findAll(['teacher_id' => $user_id, 'status' => Detect::NOT_REPLY]);
 
@@ -211,5 +212,22 @@ class Tools
         }
         return '<i class="ti ti-bell"></i>';
     }
-
+    public static function active(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => Course::find()->where(['teacher_id' => Yii::$app->user->id]),
+            'pagination' => [
+                'pageSize' => 30
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
+        ]);
+    }
+    public static function dtmBlock(string $subject_1, string $subject_2)
+    {
+        return substr($subject_1, 0, 1). substr($subject_2, 0, 1);
+    }
 }

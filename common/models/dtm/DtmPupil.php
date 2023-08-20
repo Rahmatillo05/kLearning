@@ -15,6 +15,7 @@ use Yii;
  *
  * @property Dtm $dtm
  * @property DtmResult[] $dtmResults
+ * @property DtmResult $result
  */
 class DtmPupil extends \yii\db\ActiveRecord
 {
@@ -71,5 +72,18 @@ class DtmPupil extends \yii\db\ActiveRecord
     public function getDtmResults()
     {
         return $this->hasMany(DtmResult::class, ['pupil_id' => 'id']);
+    }
+
+    public function getResult(): ?DtmResult
+    {
+        return DtmResult::findOne(['dtm_id' => $this->dtm_id]);
+    }
+
+    public function setDefaultResult(): bool
+    {
+        $result = new DtmResult();
+        $result->dtm_id = $this->dtm_id;
+        $result->pupil_id = $this->id;
+        return $result->save();
     }
 }

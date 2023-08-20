@@ -4,6 +4,7 @@ namespace frontend\modules\teacher\controllers;
 
 use common\models\course\Course;
 use common\widgets\StaticSource;
+use common\widgets\Tools;
 use frontend\controllers\ModuleController;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -15,17 +16,7 @@ class CourseController extends ModuleController
 {
     public function actionIndex(): string
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Course::find()->where(['teacher_id' => Yii::$app->user->id]),
-            'pagination' => [
-                'pageSize' => 30
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ]
-        ]);
+        $dataProvider = Tools::active();
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

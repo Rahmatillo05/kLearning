@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\dtm\Dtm;
+use common\models\dtm\DtmPupil;
 use common\models\dtm\Subject;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -33,7 +34,7 @@ class DtmController extends BaseController
         return $this->render('dtm_index', compact('dtm'));
     }
 
-    public function actionNew()
+    public function actionNew(): Response|string
     {
         $model = new Dtm();
         if ($this->request->isPost && $model->load($this->request->post())){
@@ -47,6 +48,25 @@ class DtmController extends BaseController
         }
         return $this->render('_dtm_form', compact('model'));
     }
+
+    public function actionView(int $id): string
+    {
+        $model = $this->findDtmModel($id);
+        $dtm_pupil = new DtmPupil();
+        return $this->render('dtm_view', compact('model', 'dtm_pupil'));
+    }
+
+    public function actionAddPupil(): Response
+    {
+        $model = new DtmPupil();
+        if ($model->load($this->request->post()) && $model->save() && $model->setDefaultResult()){
+            Yii::$app->session->setFlash('success', "Yangi o'quvchi qo'shildi!");
+            return $this->redirect(['view', 'id' => $model->dtm_id]);
+        }
+        Yii::$app->session->setFlash('error', "Yangi o'quvchi qo'shilmadi!");
+        return $this->redirect(['view', 'id' => $model->dtm_id]);
+    }
+
     public function actionSubject(): string
     {
         $dataProvider = new ActiveDataProvider([
@@ -115,6 +135,14 @@ class DtmController extends BaseController
     protected function findSubjectModel(int $id): Subject
     {
         if (($model = Subject::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    protected function findDtmModel(int $id): Dtm
+    {
+        if (($model = Dtm::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
