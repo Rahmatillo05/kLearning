@@ -24,7 +24,7 @@ use yii\helpers\Url; ?>
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
-                        <span class="hide-menu">Bosh Sahifa</span>
+                        <span class="hide-menu">Bosh page</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">
