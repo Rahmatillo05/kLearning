@@ -9,13 +9,18 @@ use common\widgets\Detect;
 use yii\helpers\Url;
 
 ?>
-
+<style>
+    .bgimg {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+</style>
 <div class="card">
     <div class="card-header card-title">
         <?= $model->title ?>
         <?= Detect::dtmStatus($model->status) ?>
     </div>
-    <div class="card-body" style="background-image: url(<?= Yii::getAlias('@images') . "/IMG_20230819_123141thumb-1920-834631.jpg" ?>);">
+    <div class="card-body bgimg" style="background-image: url(<?= Yii::getAlias('@images') . "/IMG_20230819_123141thumb-1920-834631.jpg" ?>);">
         <p>
             <b style="color: white;">Testda qatnashgan o'quvchilar soni: 50</b>
         </p>
@@ -28,8 +33,8 @@ use yii\helpers\Url;
         <p>
             <b style="color: white;">Eng past ball: 90</b>
         </p>
-  
-            <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a>
-   
+
+        <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a>
+
     </div>
 </div>
