@@ -13,6 +13,7 @@ use yii\helpers\Url;
     .bgimg {
         background-repeat: no-repeat;
         background-size: 100% 100%;
+        height: 235px;
     }
 </style>
 <div class="card">
@@ -20,7 +21,7 @@ use yii\helpers\Url;
         <?= $model->title ?>
         <?= Detect::dtmStatus($model->status) ?>
     </div>
-    <div class="card-body" style="background-image: url(<?= Yii::$app->params['defaultImages'] . "/test.jpg" ?>);">
+    <div class="card-body bgimg" style="background-image: url(<?= Yii::$app->params['defaultImages'] . "/test.jpg" ?>);">
         <p>
             <b style="color: white;">Testda qatnashgan o'quvchilar soni: 50</b>
         </p>
@@ -34,7 +35,7 @@ use yii\helpers\Url;
             <b style="color: white;">Eng past ball: 90</b>
         </p>
 
-        <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a>
+        <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a> 
 
     </div>
 </div>
