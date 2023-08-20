@@ -2,6 +2,7 @@
 
 namespace common\widgets;
 
+use common\models\course\Course;
 use common\models\groups\FamilyList;
 use common\models\groups\LessonSchedule;
 use common\models\groups\WaitList;
@@ -11,6 +12,7 @@ use common\models\user\UserRole;
 use Yii;
 use yii\bootstrap5\Html;
 
+use yii\data\ActiveDataProvider;
 use function PHPUnit\Framework\isNull;
 
 class Tools
@@ -209,5 +211,19 @@ class Tools
                     <div class="notification bg-primary rounded-circle"></div>';
         }
         return '<i class="ti ti-bell"></i>';
+    }
+    public static function active(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => Course::find()->where(['teacher_id' => Yii::$app->user->id]),
+            'pagination' => [
+                'pageSize' => 30
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
+        ]);
     }
 }
