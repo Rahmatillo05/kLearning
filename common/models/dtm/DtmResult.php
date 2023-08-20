@@ -35,7 +35,6 @@ class DtmResult extends \yii\db\ActiveRecord
     {
         return [
             [['dtm_id', 'pupil_id', 'subject_1', 'subject_2', 'require_subject'], 'integer'],
-            [['subject_1', 'subject_2', 'require_subject'], 'required'],
             [['total'], 'number'],
             [['dtm_id'], 'exist', 'skipOnError' => true, 'targetClass' => Dtm::class, 'targetAttribute' => ['dtm_id' => 'id']],
             [['pupil_id'], 'exist', 'skipOnError' => true, 'targetClass' => DtmPupil::class, 'targetAttribute' => ['pupil_id' => 'id']],

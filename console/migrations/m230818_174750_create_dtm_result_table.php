@@ -16,10 +16,10 @@ class m230818_174750_create_dtm_result_table extends Migration
             'id' => $this->primaryKey(),
             'dtm_id' => $this->integer(),
             'pupil_id' => $this->integer(),
-            'subject_1' => $this->integer()->notNull(),
-            'subject_2' => $this->integer()->notNull(),
-            'require_subject' => $this->integer()->notNull(),
-            'total' => $this->float(1)
+            'subject_1' => $this->float(1)->defaultValue(0),
+            'subject_2' => $this->float(1)->defaultValue(0),
+            'require_subject' => $this->float(1)->defaultValue(0),
+            'total' => $this->float(1)->defaultValue(0)
         ]);
         $this->addForeignKey('fk-to-dtm-from-dtm_result', 'dtm_result','dtm_id','dtm','id', 'CASCADE');
         $this->addForeignKey('fk-to-dtm_pupils-from-dtm_result', 'dtm_result','pupil_id','dtm_pupil','id', 'CASCADE');

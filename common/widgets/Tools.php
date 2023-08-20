@@ -226,4 +226,8 @@ class Tools
             ]
         ]);
     }
+    public static function dtmBlock(string $subject_1, string $subject_2)
+    {
+        return substr($subject_1, 0, 1). substr($subject_2, 0, 1);
+    }
 }
