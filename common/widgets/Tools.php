@@ -201,7 +201,7 @@ class Tools
         return $icons;
     }
 
-    public static function checkWaitList(int $user_id)
+    public static function checkWaitList(int $user_id): string
     {
         $wait_list = WaitList::findAll(['teacher_id' => $user_id, 'status' => Detect::NOT_REPLY]);
 
@@ -211,12 +211,5 @@ class Tools
         }
         return '<i class="ti ti-bell"></i>';
     }
-    public static function saveFile(UploadedFile $file): bool|string
- {
-     $name = "image_".Yii::$app->security->generateRandomString(5).".{$file->extension}";
-     if($file->saveAs(Yii::getAlias('@uploadFile' )."/$name")){
-         return $name;
-     }
-     return false;
- }
+
 }

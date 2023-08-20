@@ -27,14 +27,10 @@ use yii\widgets\MaskedInput;
     'hideSearch' => true
 ]) ?>
 
-<?= $form->field($model, 'role')->widget(Select2::class, [
-    'data' => $model->userRoleList(),
-    'hideSearch' => true
-]) ?>
+<?= $form->field($model, 'role')->hiddenInput(['value' => \common\widgets\Detect::TEACHER])->label(false) ?>
 
 <div class="form-group">
     <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
 </div>
 
 <?php ActiveForm::end(); ?>
-
