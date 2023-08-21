@@ -3,6 +3,7 @@
 namespace common\models\dtm;
 
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -16,6 +17,7 @@ use yii\db\ActiveRecord;
  *
  * @property DtmPupil[] $dtmPupils
  * @property DtmResult[] $dtmResults
+ * @property ActiveDataProvider $results
  */
 class Dtm extends ActiveRecord
 {
@@ -65,10 +67,33 @@ class Dtm extends ActiveRecord
     /**
      * Gets query for [[DtmResults]].
      *
-     * @return ActiveQuery
+     * @return ActiveDataProvider
      */
-    public function getDtmResults(): ActiveQuery
+    public function getDtmResults(): ActiveDataProvider
     {
-        return $this->hasMany(DtmResult::class, ['dtm_id' => 'id'])->orderBy(['total' => SORT_DESC]);
+        return new ActiveDataProvider([
+            'query' => DtmResult::find()->where(['dtm_id' => $this->id]),
+            'sort' => [
+                'defaultOrder' => [
+                    'total' => SORT_DESC
+                ]
+            ],
+            'pagination' => [
+                'pageSize' => 10
+            ]
+        ]);
+    }
+
+    public function getResults(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => DtmResult::find()->where(['dtm_id' => $this->id]),
+            'sort' => [
+                'defaultOrder' => [
+                    'total' => SORT_DESC
+                ]
+            ],
+            'pagination' => false
+        ]);
     }
 }

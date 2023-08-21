@@ -13,7 +13,7 @@ use yii\helpers\Url;
     .bgimg {
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        height: 235px;
+        height: auto;
     }
 </style>
 <div class="card">
@@ -34,8 +34,8 @@ use yii\helpers\Url;
         <p>
             <b style="color: white;">Eng past ball: 90</b>
         </p>
+        <h5 class="text-white"><?= $model->start_date ?></h5>
 
         <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a> 
-
     </div>
 </div>

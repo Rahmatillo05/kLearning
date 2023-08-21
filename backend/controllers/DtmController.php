@@ -6,6 +6,7 @@ use common\models\dtm\Dtm;
 use common\models\dtm\DtmPupil;
 use common\models\dtm\DtmResult;
 use common\models\dtm\Subject;
+use kartik\mpdf\Pdf;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -80,6 +81,31 @@ class DtmController extends BaseController
             }
         }
         return $this->render('_dtm_form', compact('model'));
+    }
+
+    public function actionDelete(int $id): Response
+    {
+        $this->findDtmModel($id)->delete();
+        Yii::$app->session->setFlash('success', "DTM was deleted");
+        return $this->redirect(['index']);
+    }
+
+    public function actionPdfDownload(int $id): string
+    {
+        $model = $this->findDtmModel($id);
+        Yii::$app->response->format = Response::FORMAT_RAW;
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE,
+            'destination' => Pdf::DEST_BROWSER,
+            'content' => $this->renderPartial('_dtm_result', compact('model')),
+            'methods' => [
+                'SetTitle' => $model->title,
+                'SetAuthor' => Yii::$app->name,
+                'SetCreator' => Yii::$app->name,
+                'SetFooter' => ['|Page {PAGENO}|'],
+            ]
+        ]);
+        return $pdf->render();
     }
 
     /**
