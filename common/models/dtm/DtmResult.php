@@ -50,9 +50,9 @@ class DtmResult extends \yii\db\ActiveRecord
             'id' => 'ID',
             'dtm_id' => 'Dtm ID',
             'pupil_id' => 'Pupil ID',
-            'subject_1' => 'Fan #1',
-            'subject_2' => 'Fan #2',
-            'require_subject' => 'Majburiy fanlar',
+            'subject_1' => 'Fan 1 | 3.1',
+            'subject_2' => 'Fan 2 | 2.1',
+            'require_subject' => 'Majburiy fanlar | 1.1',
             'total' => 'Umumiy ball',
         ];
     }
@@ -75,5 +75,11 @@ class DtmResult extends \yii\db\ActiveRecord
     public function getPupil()
     {
         return $this->hasOne(DtmPupil::class, ['id' => 'pupil_id']);
+    }
+
+    public function saveModel(): bool
+    {
+        $this->total = $this->subject_1 * 3.1 + $this->subject_2 * 2.1 + $this->require_subject * 1.1;
+        return $this->save();
     }
 }
