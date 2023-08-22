@@ -18,6 +18,8 @@ use yii\db\ActiveRecord;
  * @property DtmPupil[] $dtmPupils
  * @property DtmResult[] $dtmResults
  * @property ActiveDataProvider $results
+ * @property float $avgScore
+ * @property float $maxScore
  */
 class Dtm extends ActiveRecord
 {
@@ -96,4 +98,15 @@ class Dtm extends ActiveRecord
             'pagination' => false
         ]);
     }
+
+    public function getAvgScore(): float
+    {
+        return round(DtmResult::find()->where(['dtm_id' => $this->id])->average('total') ?? 0, 2);
+    }
+
+    public function getMaxScore(): float
+    {
+        return (float)DtmResult::find()->where(['dtm_id' => $this->id])->max('total');
+    }
+
 }
