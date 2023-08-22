@@ -79,7 +79,7 @@ class Dtm extends ActiveRecord
                 ]
             ],
             'pagination' => [
-                'pageSize' => 10
+                'pageSize' => 40
             ]
         ]);
     }
