@@ -20,7 +20,8 @@ class AppAsset extends AssetBundle
         "js/app.min.js",
         "libs/apexcharts/dist/apexcharts.min.js",
         "libs/simplebar/dist/simplebar.js",
-        "js/dashboard.js",
+//        "js/dashboard.js",
+
     ];
     public $depends = [
         'yii\web\YiiAsset',

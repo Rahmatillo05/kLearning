@@ -29,11 +29,19 @@ class Detect
     public static function detectRole(int $user_role): string
     {
         $base_role = UserRole::findOne(['role_power' => $user_role]);
-        return "/".strtolower($base_role->role_name);
+        return "/" . strtolower($base_role->role_name);
     }
 
-    public static function dtmStatus(int $status): string
+    public static function dtmStatus(int $status, bool $for_front = false): string
     {
+        if ($for_front){
+            if ($status == self::STATUS_DELETED) {
+                return "<span class='badge badge-danger rounded-3 fw-semibold'>Test yakunlangan</span>";
+            } elseif ($status == self::STATUS_INACTIVE) {
+                return "<span class='badge badge-warning rounded-3 fw-semibold'>Tekshirilmoqda</span>";
+            }
+            return "<span class='badge badge-success rounded-3 fw-semibold'>Qabul ochiq</span>";
+        }
         if ($status == self::STATUS_DELETED) {
             return "<span class='badge bg-danger rounded-3 fw-semibold'>Test yakunlangan</span>";
         } elseif ($status == self::STATUS_INACTIVE) {

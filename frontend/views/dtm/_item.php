@@ -1,9 +1,10 @@
 <?php
 
-use common\models\dtm\Dtm;
 /**
  * @var Dtm $model
  */
+
+use common\models\dtm\Dtm;
 use common\widgets\Detect;
 use yii\helpers\Url;
 
@@ -18,7 +19,7 @@ use yii\helpers\Url;
 <div class="card">
     <div class="card-header card-title">
         <?= $model->title ?>
-        <?= Detect::dtmStatus($model->status) ?>
+        <?= Detect::dtmStatus($model->status, true) ?>
     </div>
     <div class="card-body bgimg" style="background-image: url(<?= Yii::$app->params['defaultImages'] . "/test.jpg" ?>);">
         <p>
@@ -32,6 +33,6 @@ use yii\helpers\Url;
         </p>
         <h5 class="text-white"><?= $model->start_date ?></h5>
 
-        <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a> 
+        <a href="<?= Url::to(['view', 'id' => $model->id]) ?>" class="btn btn-primary btn-block">To'liq ko'rish</a>
     </div>
 </div>
