@@ -35,7 +35,7 @@ $route = Yii::$app->controller->route;
                     'links' => $this->params['breadcrumbs'] ?? [],
                     'tag' => 'p',
                     'itemTemplate' => "<span class='mr-2'>{link} <i class='fa fa-chevron-right'></i></span>\n",
-                    'activeItemTemplate' => "<span>{link} <i class='fa fa-chevron-right'></i></span>\n",
+                    'activeItemTemplate' => "<span>{link} </span>\n",
                     'options' => [
                         'class' => 'breadcrumbs'
                     ]
