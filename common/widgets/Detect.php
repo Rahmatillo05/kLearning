@@ -41,4 +41,12 @@ class Detect
         }
         return "<span class='badge bg-success rounded-3 fw-semibold'>Qabul ochiq</span>";
     }
+    public static function setStatusBadge($status): string
+    {
+        if ($status == self::NOT_REPLY) {
+            return "<span class='badge bg-danger rounded-3 fw-semibold'>Ogohlantirilmagan </span>";
+        } else {
+            return "<span class='badge bg-success rounded-3 fw-semibold'>Ogohlantirilgan</span>";
+        }
+    }
 }

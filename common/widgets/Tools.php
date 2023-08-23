@@ -21,6 +21,8 @@ class Tools
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
+    const REPLY = 10;
+    const NOT_REPLY = 0;
     public static function generateUsername(string $full_name): array|string
     {
         $username = str_replace(' ', '_', strtolower($full_name));
@@ -30,16 +32,6 @@ class Tools
             return $username . rand(1, 9999);
         }
         return $username;
-    }
-
-    public static function setStatusBadge($status): string
-    {
-        if ($status == self::STATUS_DELETED) {
-            return "<span class='badge bg-danger rounded-3 fw-semibold'>O'chirilgan</span>";
-        } elseif ($status == self::STATUS_INACTIVE) {
-            return "<span class='badge bg-warning rounded-3 fw-semibold'>Nofaol</span>";
-        }
-        return "<span class='badge bg-success rounded-3 fw-semibold'>Faol</span>";
     }
 
     public static function setStatusBadgeAsIcon(int $status): string
