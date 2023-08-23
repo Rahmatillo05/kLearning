@@ -37,7 +37,7 @@ class AppController extends Controller
         return $this->render('my-room', compact('room'));
     }
 
-    public function actionNotification(): string
+   public function actionNotification(): string
     {
         $wait_list = new ActiveDataProvider([
             'query' => WaitList::find()->where(['teacher_id' => Yii::$app->user->id, 'status' => Detect::NOT_REPLY]),
@@ -48,7 +48,7 @@ class AppController extends Controller
             ]
         ]);
         return $this->render('notification', compact('wait_list'));
-    }
+    } 
 
     /**
      * @throws ErrorException

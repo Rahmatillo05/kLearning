@@ -5,10 +5,9 @@
 /** @var string $content */
 
 use backend\assets\AppAsset;
-use common\widgets\Alert;
+use common\widgets\Toastr;
 use kartik\icons\FontAwesomeAsset;
 use lavrentiev\widgets\toastr\NotificationBase;
-use lavrentiev\widgets\toastr\NotificationFlash;
 use yii\bootstrap5\Html;
 
 AppAsset::register($this);
@@ -33,7 +32,7 @@ FontAwesomeAsset::register($this)
         <div class="body-wrapper">
             <?= $this->render('header') ?>
             <div class="container-fluid">
-                <?= NotificationFlash::widget([
+                <?= Toastr::widget([
                         'options' => [
                             "positionClass" => NotificationBase::POSITION_TOP_CENTER
                         ]
@@ -42,6 +41,7 @@ FontAwesomeAsset::register($this)
             </div>
         </div>
     </div>
+
     <?php $this->endBody() ?>
     </body>
     </html>

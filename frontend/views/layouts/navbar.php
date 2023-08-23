@@ -23,6 +23,9 @@ use yii\helpers\Url;
                 <li class="nav-item <?= ($route == 'teachers/index') ? 'active' : '' ?>">
                     <a href="<?= Url::to(['/teachers/index']) ?>" class="nav-link">O'qituvchilar</a>
                 </li>
+                <li class="nav-item <?= ($route == 'dtm/index') ? 'active' : '' ?>">
+                    <a href="<?= Url::to(['/dtm/index']) ?>" class="nav-link">DTM Testlar</a>
+                </li>
                 <li class="nav-item <?= ($route == 'site/contact') ? 'active' : '' ?>">
                     <a href="<?= Url::to(['/site/contact']) ?>" class="nav-link">Fikringiz</a>
                 </li>
