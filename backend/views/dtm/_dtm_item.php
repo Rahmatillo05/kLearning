@@ -1,10 +1,9 @@
 <?php
 
+use common\models\dtm\Dtm;
 /**
  * @var Dtm $model
  */
-
-use common\models\dtm\Dtm;
 use common\widgets\Detect;
 use yii\helpers\Url;
 

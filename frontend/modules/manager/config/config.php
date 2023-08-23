@@ -1,6 +1,6 @@
 <?php
 return [
-    'id' => 'app-manager',
+    'id' => 'manager',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\modules\manager\controllers',
     'defaultRoute' => 'app',
@@ -28,5 +28,4 @@ return [
             'csrfParam' => '_csrf-manager',
         ],
     ],
-
 ];
