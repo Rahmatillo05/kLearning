@@ -63,7 +63,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'scriptUrl' => '/index.php',
-            'suffix' => '.html',
+            // 'suffix' => '.html',
             'rules' => [
             ],
         ],

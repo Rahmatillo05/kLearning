@@ -32,11 +32,20 @@ use yii\helpers\Url; ?>
                     <span class="hide-menu">User Controls</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/teacher/user']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/manager/user']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-users"></i>
                         </span>
                         <span class="hide-menu">Users</span>
+                    </a>
+                    
+                </li>
+                <li class="sidebar-item">
+                <a class="sidebar-link" href="<?= Url::to(['/manager/app/notification']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-users"></i>
+                        </span>
+                        <span class="hide-menu">Qabulga yozilganlar</span>
                     </a>
                 </li>
             </ul>
