@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <h4 class="card-header card-title"><?= Html::encode($this->title) ?></h4>
     <div class="card-body">
-        <?= $this->render('_form', [
+        <?= $this->render('_form_', [
             'model' => $model,
         ]) ?>
     </div>
