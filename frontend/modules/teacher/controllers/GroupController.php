@@ -5,6 +5,7 @@ namespace frontend\modules\teacher\controllers;
 use common\models\groups\FamilyList;
 use common\models\groups\Group;
 use common\models\groups\LessonSchedule;
+use common\widgets\Tools;
 use frontend\controllers\ModuleController;
 use Yii;
 use yii\data\ActiveDataProvider;
@@ -16,20 +17,9 @@ class GroupController extends ModuleController
 
     public function actionIndex(): string
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Group::find()->where(['teacher_id' => Yii::$app->user->id]),
-            'pagination' => [
-                'pageSize' => 30
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ]
-        ]);
+        $dataProvider = Tools::ActiveGroups();
         return $this->render('index', compact('dataProvider'));
     }
-
 
     public function actionLessonSchedule(int $group_id): Response|string
     {

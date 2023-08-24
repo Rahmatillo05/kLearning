@@ -4,8 +4,7 @@
 
 use yii\helpers\VarDumper;
 
-$this->title = 'Teacher - Dashboard';
-VarDumper::dump(Yii::$app->getModules(true)[0]->id, 10, true);
+$this->title = 'O\'quvchi - '. Yii::$app->user->identity->full_name;
 ?>
 
 <div class="card">

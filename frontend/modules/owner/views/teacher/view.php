@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'status',
                     'value' => function ($model) {
-                        return Tools::setStatusBadge($model->status);
+                        return Tools::setStatusBadgeAsIcon($model->status);
                     },
                     'format' => 'html'
                 ],
@@ -70,6 +70,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'pager' => [
                 'class' => LinkPager::class
             ]
+        ]) ?>
+        <h2 class="my-4">Mening grupam</h2>
+        <?= ListView::widget([
+            'dataProvider' => $groups,
+            'options' => [
+                'class' => 'row'
+            ],
+            'itemOptions' => [
+                'class' => 'col-md-4 p-2'
+            ],
+            'layout' => "{items}\n{pager}",
+            'itemView' => '_item'
         ]) ?>
     </div>
 </div>

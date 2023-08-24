@@ -218,8 +218,18 @@ class Tools
             ]
         ]);
     }
-    public static function dtmBlock(string $subject_1, string $subject_2)
+    public static function dtmBlock(string $subject_1, string $subject_2): string
     {
         return substr($subject_1, 0, 1). substr($subject_2, 0, 1);
+    }
+
+    public static function setStatusBadge(int $status): string
+    {
+        if($status === self::STATUS_ACTIVE){
+            return "<span class='badge bg-success'>Faol</span>";
+        } elseif($status === self::STATUS_INACTIVE){
+            return "<span class='badge bg-warning'>Nofaol</span>";
+        }
+        return "<span class='badge bg-danger'>O'chirilgan</span>";
     }
 }
