@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => 'row'
             ],
             'itemOptions' => [
-                'class' => 'col-md-6 col-lg-3 ftco-animate d-flex align-items-stretch'
+                'class' => 'col-md-6 col-lg-4 ftco-animate d-flex align-items-stretch'
             ]
         ])
         ?>
