@@ -31,6 +31,16 @@ class ContactForm extends Model
 
         ];
     }
+
+    public function attributeLabels()
+    {
+        return [
+          'username' => 'Ismingiz',
+          'email' => 'Elektron Pochtangiz',
+          'title' => 'Xabar mavzusi',
+          'body' => 'Xabar matni'
+        ];
+    }
     public function save() {
         $contact = new Contact();
         $contact->username = $this->username;
