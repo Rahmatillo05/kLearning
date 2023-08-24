@@ -20,7 +20,7 @@ use yii\helpers\Url;
         <p class="advisor">O'qituvchi: <span><a href="<?= Url::to(['teachers/view', 'id' => $model->teacher->id]) ?>"><?= $model->teacher->full_name ?></a></span>
         </p>
         <ul class="d-flex justify-content-between">
-            <a href="<?= Url::to(['/course/online-apply', 'id' => $model->id, 't_id' => $model->teacher->id]) ?>">Qabulga yozilish</a>
+            <a href="<?= Url::to(['course/view', 'id' => $model->id, 't_id' => $model->teacher->id]) ?>">Qabulga yozilish</a>
         </ul>
     </div>
 </div>

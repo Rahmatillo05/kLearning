@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status',
                         'value' => function (User $model) {
-                            return Tools::setStatusBadgeAsIcon($model->status);
+                            return Tools::setStatusBadge($model->status);
                         },
                         'format' => 'html'
                     ],

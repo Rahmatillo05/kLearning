@@ -30,7 +30,7 @@ use yii\helpers\Url;
                     <a href="<?= Url::to(['/site/contact']) ?>" class="nav-link">Fikringiz</a>
                 </li>
                 <?php if (!Yii::$app->user->isGuest) : ?>
-                    <li class="nav-item <?= ($route == 'site/contact') ? 'active' : '' ?>">
+                    <li class="nav-item <?= ($route == 'site/login') ? 'active' : '' ?>">
                         <a href="<?= Url::to(['/site/login']) ?>" class="nav-link"><?= Yii::$app->user->identity->full_name ?></a>
                     </li>
                 <?php else : ?>

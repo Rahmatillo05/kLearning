@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 <?= $form->field($model, 'status')->hiddenInput(['value' => 0],)->label(false) ?>
                 <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                    <?= Html::submitButton('Yuborish', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>
