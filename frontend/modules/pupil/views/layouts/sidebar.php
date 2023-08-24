@@ -17,26 +17,14 @@ use yii\helpers\Url; ?>
             <ul id="sidebarnav">
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Home</span>
+                    <span class="hide-menu">Asosiy</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/teacher']) ?>" aria-expanded="false">
-                <span>
-                  <i class="ti ti-layout-dashboard"></i>
-                </span>
-                        <span class="hide-menu">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">User Controls</span>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/teacher/user']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/pupil/']) ?>" aria-expanded="false">
                         <span>
-                          <i class="ti ti-users"></i>
+                          <i class="ti ti-layout-dashboard"></i>
                         </span>
-                        <span class="hide-menu">Users</span>
+                        <span class="hide-menu">Bosh menu</span>
                     </a>
                 </li>
             </ul>
