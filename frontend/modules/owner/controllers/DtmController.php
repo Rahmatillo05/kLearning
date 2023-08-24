@@ -1,15 +1,18 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\modules\owner\controllers;
 
+use backend\controllers\BaseController;
 use common\models\dtm\Dtm;
 use common\models\dtm\DtmPupil;
 use common\models\dtm\DtmResult;
 use common\models\dtm\Subject;
-use kartik\mpdf\Pdf;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\db\StaleObjectException;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 use yii\web\Response;
 
 /**
@@ -18,7 +21,7 @@ use yii\web\Response;
 class DtmController extends BaseController
 {
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $dtm = new ActiveDataProvider([
             'query' => Dtm::find(),
@@ -37,59 +40,17 @@ class DtmController extends BaseController
     public function actionNew(): Response|string
     {
         $model = new Dtm();
-        if ($this->request->isPost && $model->load($this->request->post())) {
-            if ($model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())){
+            if ($model->save()){
                 Yii::$app->session->setFlash('success', "Starting new challenge");
                 return $this->redirect(['index']);
-            } else {
+            }else{
                 Yii::$app->session->setFlash('error', "Ma'lumotlarni saqlab bo'lmadi!");
                 $model->loadDefaultValues();
             }
         }
         return $this->render('_dtm_form', compact('model'));
     }
-
-    public function actionView(int $id): string
-    {
-        $model = $this->findDtmModel($id);
-        $dtm_pupil = new DtmPupil();
-        return $this->render('dtm_view', compact('model', 'dtm_pupil'));
-    }
-
-    public function actionAddPupil(): Response
-    {
-        $model = new DtmPupil();
-        if ($model->load($this->request->post()) && $model->save() && $model->setDefaultResult()) {
-            Yii::$app->session->setFlash('success', "Yangi o'quvchi qo'shildi!");
-            return $this->redirect(['view', 'id' => $model->dtm_id]);
-        }
-        Yii::$app->session->setFlash('error', "Yangi o'quvchi qo'shilmadi!");
-        return $this->redirect(['view', 'id' => $model->dtm_id]);
-    }
-
-    public function actionUpdate(int $id): Response|string
-    {
-        $model = $this->findDtmModel($id);
-
-        if ($model->load($this->request->post())) {
-            if ($model->save()) {
-                Yii::$app->session->setFlash('success', "Update DTM information");
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                Yii::$app->session->setFlash('error', 'Ma\'lumotlarni saqlab bo\'lmadi!');
-                $model->loadDefaultValues();
-            }
-        }
-        return $this->render('_dtm_form', compact('model'));
-    }
-
-    public function actionDelete(int $id): Response
-    {
-        $this->findDtmModel($id)->delete();
-        Yii::$app->session->setFlash('success', "DTM was deleted");
-        return $this->redirect(['index']);
-    }
-
     public function actionPdfDownload(int $id): string
     {
         $model = $this->findDtmModel($id);
@@ -106,6 +67,56 @@ class DtmController extends BaseController
             ]
         ]);
         return $pdf->render();
+    }
+    /**
+     * @throws NotFoundHttpException
+     */
+    public function actionView(int $id): string
+    {
+        $model = $this->findDtmModel($id);
+        $dtm_pupil = new DtmPupil();
+        return $this->render('dtm_view', compact('model', 'dtm_pupil'));
+    }
+
+    public function actionAddPupil(): Response
+    {
+        $model = new DtmPupil();
+        if ($model->load($this->request->post()) && $model->save() && $model->setDefaultResult()){
+            Yii::$app->session->setFlash('success', "Yangi o'quvchi qo'shildi!");
+            return $this->redirect(['view', 'id' => $model->dtm_id]);
+        }
+        Yii::$app->session->setFlash('error', "Yangi o'quvchi qo'shilmadi!");
+        return $this->redirect(['view', 'id' => $model->dtm_id]);
+    }
+
+    public function actionSubject(): string
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Subject::find(),
+            'pagination' => [
+                'pageSize' => 50
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
+        ]);
+        $new_subject = new Subject();
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+            'model' => $new_subject
+        ]);
+    }
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    public function actionSubjectView(int $id): string
+    {
+        return $this->render('view', [
+            'model' => $this->findSubjectModel($id),
+        ]);
     }
 
     /**
@@ -129,34 +140,6 @@ class DtmController extends BaseController
         }
         return $response;
     }
-
-    public function actionSubject(): string
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Subject::find(),
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ]
-        ]);
-        $new_subject = new Subject();
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-            'model' => $new_subject
-        ]);
-    }
-
-    public function actionSubjectView(int $id): string
-    {
-        return $this->render('view', [
-            'model' => $this->findSubjectModel($id),
-        ]);
-    }
-
 
     public function actionSubjectCreate(): Response
     {
@@ -187,6 +170,11 @@ class DtmController extends BaseController
     }
 
 
+    /**
+     * @throws \Throwable
+     * @throws StaleObjectException
+     * @throws NotFoundHttpException
+     */
     public function actionSubjectDelete(int $id): Response
     {
         $this->findSubjectModel($id)->delete();
@@ -195,9 +183,6 @@ class DtmController extends BaseController
     }
 
 
-    /**
-     * @throws NotFoundHttpException
-     */
     protected function findSubjectModel(int $id): Subject
     {
         if (($model = Subject::findOne(['id' => $id])) !== null) {

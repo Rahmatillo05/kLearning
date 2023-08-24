@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\DetailView;
 
+
 /**
  * @var Group $group
  * @var View $this
@@ -36,16 +37,6 @@ $this->title = $group->name
         <div class="card">
             <div class="card-header d-md-flex justify-content-between">
                 <h3 class="card-title">Guruh haqida</h3>
-                <p>
-                    <?= Html::a('<i class="ti ti-pencil"></i>', ['update', 'id' => $group->id], ['class' => 'btn btn-primary']) ?>
-                    <?= Html::a('<i class="ti ti-trash"></i>', ['delete', 'id' => $group->id], [
-                        'class' => 'btn btn-danger',
-                        'data' => [
-                            'confirm' => 'Are you sure you want to delete this item?',
-                            'method' => 'post',
-                        ],
-                    ]) ?>
-                </p>
             </div>
             <div class="card-bdy">
                 <?= DetailView::widget([
