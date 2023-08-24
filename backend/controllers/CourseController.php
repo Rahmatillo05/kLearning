@@ -23,7 +23,7 @@ class CourseController extends BaseController
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Course::find(),
@@ -122,7 +122,7 @@ class CourseController extends BaseController
      * @return Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id): Response
+    public function actionDelete(int $id): Response
     {
         $model = $this->findModel($id);
         if (unlink(Yii::$app->params['uploadPath'] . $model->image) && $model->delete()) {

@@ -29,7 +29,7 @@ use yii\helpers\Url;
             [
                 'attribute' => 'status',
                 'value' => function (User $model) {
-                    return Tools::setStatusBadge($model->status);
+                    return Tools::setStatusBadgeAsIcon($model->status);
                 },
                 'format' => 'html'
             ],

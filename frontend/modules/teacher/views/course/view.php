@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'first_lesson',
                 [
                     'attribute' => 'status',
-                    'value' => Tools::setStatusBadge($model->status),
+                    'value' => Tools::setStatusBadgeAsIcon($model->status),
                     'format' => 'html'
                 ],
                 'created_at:date',
