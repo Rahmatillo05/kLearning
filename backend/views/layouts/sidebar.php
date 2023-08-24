@@ -40,7 +40,7 @@ use yii\helpers\Url; ?>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/wait-list']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/wait-list/index']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-user-check"></i>
                         </span>
