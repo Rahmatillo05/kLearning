@@ -20,7 +20,7 @@ use yii\helpers\Url;
         <?= $model->title ?>
         <?= Detect::dtmStatus($model->status) ?>
     </div>
-    <div class="card-body" style="background-image: url(<?= Yii::$app->params['defaultImages'] . "/test.jpg" ?>);">
+    <div class="card-body bgimg" style="background-image: url(<?= Yii::$app->params['defaultImages'] . "/test.jpg" ?>);">
         <p>
             <b style="color: white;">Testda qatnashgan o'quvchilar soni: 50</b>
         </p>
