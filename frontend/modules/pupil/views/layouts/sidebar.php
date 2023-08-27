@@ -43,6 +43,14 @@ use yii\helpers\Url; ?>
                         <span class="hide-menu">DTM Tests</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" target="_blank" href="<?= Url::to(['/course']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-compass"></i>
+                        </span>
+                        <span class="hide-menu">Yangi kurslar</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
