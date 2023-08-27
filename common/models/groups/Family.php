@@ -4,6 +4,7 @@ namespace common\models\groups;
 
 use common\models\user\User;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -17,6 +18,7 @@ use yii\db\ActiveRecord;
  * @property FamilyList[] $familyLists
  * @property User $parent
  * @property User $pupil
+ * @property ActiveDataProvider $familyListAsProvider
  */
 class Family extends ActiveRecord
 {
@@ -80,5 +82,16 @@ class Family extends ActiveRecord
     public function getPupil(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'pupil_id']);
+    }
+
+    /**
+     * @return ActiveDataProvider
+     */
+    public function getFamilyListAsProvider(): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => FamilyList::find()->where(['family_id' => $this->id]),
+            'pagination' => false
+        ]);
     }
 }

@@ -27,6 +27,14 @@ use yii\helpers\Url; ?>
                         <span class="hide-menu">Bosh menu</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/pupil/my-group']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-book-2"></i>
+                        </span>
+                        <span class="hide-menu">O'quv guruhlarim</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
