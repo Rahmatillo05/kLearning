@@ -40,7 +40,7 @@ use yii\helpers\Url; ?>
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/owner/user']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/owner/pupil']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-users"></i>
                         </span>
