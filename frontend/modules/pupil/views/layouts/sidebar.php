@@ -35,6 +35,14 @@ use yii\helpers\Url; ?>
                         <span class="hide-menu">O'quv guruhlarim</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/pupil/dtm/index']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-a-b"></i>
+                        </span>
+                        <span class="hide-menu">DTM Tests</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
