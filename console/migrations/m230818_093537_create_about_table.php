@@ -18,7 +18,7 @@ class m230818_093537_create_about_table extends Migration
             'last_image' => $this->string()->notNull(),
             'motiv' => $this->string()->notNull(),
             'title' => $this->string()->notNull(),
-            'text' => $this->string()->notNull(),
+            'text' => $this->text()->notNull(),
         ]);
     }
 
