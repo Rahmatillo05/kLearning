@@ -1,8 +1,13 @@
 <?php
 
+use common\models\groups\WaitList;
+use common\widgets\Detect;
 use kartik\select2\Select2;
 use yii\bootstrap5\ActiveForm;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\JsExpression;
 use yii\widgets\MaskedInput;
 
 /** @var yii\web\View $this */
@@ -12,7 +17,11 @@ use yii\widgets\MaskedInput;
 
 
 <?php $form = ActiveForm::begin(); ?>
-
+<?= Select2::widget([
+    'data' => ArrayHelper::map(WaitList::findAll(['status' => Detect::REPLY]), 'id', 'full_name'),
+    'name' => 'search',
+    'options' => ['placeholder' => 'Select an item...', 'id' => 'wait-list'],
+]) ?>
 <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
 
 <?= $form->field($model, 'tel_number')->widget(MaskedInput::class, [
@@ -38,3 +47,20 @@ use yii\widgets\MaskedInput;
 
 <?php ActiveForm::end(); ?>
 
+<?php
+
+$js = <<<JS
+$("#wait-list").on('change', function() {
+    let id = $(this).val();
+  $.ajax({
+    type:"GET",
+    url:`/backend/user/search?id=`+id,
+    dataType:'json',
+    success:function(data) {
+      console.log(data.phone_number)
+    }
+  })
+})
+JS;
+
+$this->registerJs($js);
