@@ -68,6 +68,14 @@ use yii\helpers\Url; ?>
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/banner']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Banner</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= Url::to(['/course']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-book"></i>

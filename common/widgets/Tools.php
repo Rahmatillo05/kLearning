@@ -6,6 +6,7 @@ use common\models\course\Course;
 use common\models\groups\FamilyList;
 use common\models\groups\LessonSchedule;
 use common\models\groups\WaitList;
+use common\models\MainImg\MainImg;
 use common\models\user\TeacherSocialAccounts;
 use common\models\user\User;
 use common\models\user\UserRole;
@@ -231,5 +232,9 @@ class Tools
             return "<span class='badge bg-warning'>Nofaol</span>";
         }
         return "<span class='badge bg-danger'>O'chirilgan</span>";
+    }
+    public static function MainImg(): MainImg
+    {
+        return MainImg::find()->one();
     }
 }
