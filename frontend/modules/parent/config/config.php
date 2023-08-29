@@ -1,6 +1,6 @@
 <?php
 return [
-    'id' => 'app-parent',
+    'id' => 'parent',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'frontend\modules\parent\controllers',
     'defaultRoute' => 'app',

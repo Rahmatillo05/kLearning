@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\groups\WaitList;
 use common\models\user\TeacherSocialAccounts;
 use common\models\user\User;
 use common\models\user\UserInfo;
@@ -11,6 +12,7 @@ use common\widgets\UploadFile;
 use Yii;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\web\UploadedFile;
@@ -176,6 +178,14 @@ class UserController extends BaseController
         return $this->redirect(['index']);
     }
 
+    public function actionSearch(int $id): string
+    {
+
+        $response = WaitList::findOne(['id' => $id, 'status' => Detect::REPLY]);
+
+        return Json::encode($response);
+
+    }
 
     /**
      * Finds the User model based on its primary key value.

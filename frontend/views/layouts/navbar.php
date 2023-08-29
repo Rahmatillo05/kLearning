@@ -1,5 +1,7 @@
 <?php
 $route = Yii::$app->controller->route;
+
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -30,8 +32,8 @@ use yii\helpers\Url;
                     <a href="<?= Url::to(['/site/contact']) ?>" class="nav-link">Fikringiz</a>
                 </li>
                 <?php if (!Yii::$app->user->isGuest) : ?>
-                    <li class="nav-item <?= ($route == 'site/contact') ? 'active' : '' ?>">
-                        <a href="<?= Url::to(['/site/login']) ?>" class="nav-link"><?= Yii::$app->user->identity->full_name ?></a>
+                    <li class="nav-item <?= ($route == 'site/login') ? 'active' : '' ?>">
+                        <a href="<?= Url::to(['/site/login']) ?>" class="nav-link"><?= StringHelper::truncateWords(Yii::$app->user->identity->full_name, 1) ?></a>
                     </li>
                 <?php else : ?>
                     <li class="nav-item">

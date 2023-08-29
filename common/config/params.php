@@ -8,6 +8,6 @@ return [
     'user.passwordMinLength' => 8,
     'bsVersion' => '5x',
     'uploadPath' => dirname(__DIR__, 2) .'/frontend/web/upload/',
-    'viewPath' => 'http://klearning/web/upload/',
+    'viewPath' => 'http://klearning/upload/',
     'defaultImages'  => 'http://klearning/front/images/'
 ];

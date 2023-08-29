@@ -44,7 +44,7 @@ $this->title = $model->title;
                     ]) ?>
                 </div>
                 <h4 class="card-title card-header">Pupil list</h4>
-                <a href="<?= Url::to(['/dtm/pdf-download', 'id' => $model->id]) ?>" target="_blank"
+                <a href="<?= Url::to(['/owner/dtm/pdf-download', 'id' => $model->id]) ?>" target="_blank"
                    class="btn btn-info">Download PDF</a>
             </div>
             <?php if ($model->dtmPupils): ?>
@@ -87,7 +87,7 @@ $this->title = $model->title;
                                 'buttons' => [
                                     'plus-score' => function ($url, $model) {
                                         return Html::a('<i class="ti ti-plus"></i>',
-                                            ['/dtm/plus-score', 'pupil_id' => $model->pupil_id],
+                                            ['/owner/dtm/plus-score', 'pupil_id' => $model->pupil_id],
                                             [
                                                 'class' => 'btn btn-sm btn-primary add-score'
                                             ]
