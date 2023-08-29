@@ -9,8 +9,8 @@ $this->title = "About Setting"
     <?php $form = ActiveForm::begin([
         'action' => Url::toRoute(['/about/index'])
     ]); ?>
-    <?= $form->field($model, 'motiv')->textarea(['rows' => 1]) ?>
-    <?= $form->field($model, 'title')->textarea(['rows' => 1]) ?>
+    <?= $form->field($model, 'motiv')->textInput() ?>
+    <?= $form->field($model, 'title')->textInput() ?>
     <?= $form->field($model, 'text')->textarea(['rows' => 5]) ?>
 
     <div class="form-group mb-3">

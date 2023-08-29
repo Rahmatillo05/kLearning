@@ -4,6 +4,8 @@ namespace frontend\controllers;
 
 use common\models\about\About;
 use common\models\contact\Contact;
+use common\models\course\Course;
+use common\models\MainImg\MainImg;
 use common\widgets\Detect;
 use frontend\models\LoginForm;
 use frontend\models\SignupForm;
@@ -73,7 +75,9 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
-        return $this->render('index');
+        $courses = Course::find()->count();
+        $model = About::find()->one();
+        return $this->render('index', compact('model', 'courses'));
     }
 
     /**
