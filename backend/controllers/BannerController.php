@@ -14,10 +14,10 @@ class BannerController extends BaseController
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $main_img = UploadedFile::getInstance($model, 'main_img');
-                $model->main_img = $main_img ? UploadFile::saveFile($main_img) : $model->getOldAttribute('main_img');
+                $model->main_img = $main_img ? UploadFile::saveFile($main_img, $model->getOldAttribute('main_img')) : $model->getOldAttribute('main_img');
 
                 $banners = UploadedFile::getInstance($model, 'banners');
-                $model->banners = $banners ? UploadFile::saveFile($banners) : $model->getOldAttribute('banners');
+                $model->banners = $banners ? UploadFile::saveFile($banners, $model->getOldAttribute('banners')) : $model->getOldAttribute('banners');
                 if ($model->save()) {
                     return $this->redirect(['index']);
                 }else{
