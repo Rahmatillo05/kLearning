@@ -71,7 +71,7 @@ class UserController extends BaseController
         $model = UserInfo::findOne(['user_id' => $id]) ?? new UserInfo();
         if ($this->request->isPost && $model->load($this->request->post())) {
             $image = UploadedFile::getInstance($model, 'image');
-            $model->image = $image ? UploadFile::saveFile($image) : $model->getOldAttribute('image');
+            $model->image = $image ? UploadFile::saveFile($image, $model->getOldAttribute('image')) : $model->getOldAttribute('image');
             if ($model->save()) {
                 Yii::$app->session->setFlash('success', 'Information saved!');
                 return $this->redirect(['view', 'id' => $id]);
