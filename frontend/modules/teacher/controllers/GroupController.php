@@ -17,7 +17,7 @@ class GroupController extends ModuleController
 
     public function actionIndex(): string
     {
-        $dataProvider = Tools::ActiveGroups();
+        $dataProvider = Tools::ActiveGroups(Yii::$app->user->id);
         return $this->render('index', compact('dataProvider'));
     }
 

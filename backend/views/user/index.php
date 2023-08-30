@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h4 class="card-header card-title"><?= Html::encode($this->title) ?></h4>
 
     <div class="card-body p-2">
+
         <p>
             <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
