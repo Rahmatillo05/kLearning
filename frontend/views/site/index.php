@@ -204,7 +204,6 @@ if (!$datas) {
 
             </div>
         </div>
-        </div>
     </section>
     <?php
 }
