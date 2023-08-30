@@ -14,6 +14,7 @@ use Yii;
 use yii\bootstrap5\Html;
 
 use yii\data\ActiveDataProvider;
+use yii\db\ActiveRecord;
 use function PHPUnit\Framework\isNull;
 
 class Tools
@@ -233,7 +234,7 @@ class Tools
         }
         return "<span class='badge bg-danger'>O'chirilgan</span>";
     }
-    public static function MainImg(): MainImg
+    public static function MainImg(): array|ActiveRecord|null
     {
         return MainImg::find()->one();
     }
