@@ -4,6 +4,7 @@ namespace common\widgets;
 
 use common\models\course\Course;
 use common\models\groups\FamilyList;
+use common\models\groups\Group;
 use common\models\groups\LessonSchedule;
 use common\models\groups\WaitList;
 use common\models\MainImg\MainImg;
@@ -205,10 +206,25 @@ class Tools
         }
         return '<i class="ti ti-bell"></i>';
     }
-    public static function active(): ActiveDataProvider
+    public static function active($teacher_id): ActiveDataProvider
     {
         return new ActiveDataProvider([
-            'query' => Course::find()->where(['teacher_id' => Yii::$app->user->id]),
+            'query' => Course::find()->where(['teacher_id' => $teacher_id]),
+            'pagination' => [
+                'pageSize' => 30
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
+        ]);
+    }
+
+    public static function ActiveGroups($teacher_id): ActiveDataProvider
+    {
+        return new ActiveDataProvider([
+            'query' => Group::find()->where(['teacher_id' => $teacher_id]),
             'pagination' => [
                 'pageSize' => 30
             ],

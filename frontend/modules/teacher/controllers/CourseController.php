@@ -16,7 +16,7 @@ class CourseController extends ModuleController
 {
     public function actionIndex(): string
     {
-        $dataProvider = Tools::active();
+        $dataProvider = Tools::active(Yii::$app->user->id);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,

@@ -22,12 +22,13 @@ use yii\widgets\MaskedInput;
     'name' => 'search',
     'options' => ['placeholder' => 'Select an item...', 'id' => 'wait-list'],
 ]) ?>
-<?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
+<?= $form->field($model, 'full_name')->textInput(['maxlength' => true,'id' => 'full-name-input']) ?>
 
 <?= $form->field($model, 'tel_number')->widget(MaskedInput::class, [
     'mask' => '+\9\98 99 999-99-99',
     'options' => [
-        'placeholder' => '+998 90 123-45-67'
+        'placeholder' => '+998 90 123-45-67',
+        'id' => 'phone-number-input'
     ]
 ]) ?>
 
@@ -57,7 +58,8 @@ $("#wait-list").on('change', function() {
     url:`/backend/user/search?id=`+id,
     dataType:'json',
     success:function(data) {
-      console.log(data.phone_number)
+      $('#full-name-input').val(data.full_name); 
+      $('#phone-number-input').val(data.phone_number);
     }
   })
 })
