@@ -2,12 +2,17 @@
 
 use common\models\user\User;
 use common\widgets\Tools;
+use yii\bootstrap5\Html;
 use yii\bootstrap5\LinkPager;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Url;
 $this->title = "O'quvchi"
 ?>
+<p>
+    <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+</p>
+
     <div class="table-responsive">
 <?= GridView::widget([
     'dataProvider' => $dataProvider,

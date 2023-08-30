@@ -88,8 +88,8 @@ class TeacherController extends BaseController
     public function actionView(int $id): string
     {
         $model = $this->findModel($id);
-        $dataProvider = Tools::active();
-        $groups = Tools::ActiveGroups();
+        $dataProvider = Tools::active($id);
+        $groups = Tools::ActiveGroups($id);
         return $this->render('view',[
             'model' => $model,
             'dataProvider' => $dataProvider,
