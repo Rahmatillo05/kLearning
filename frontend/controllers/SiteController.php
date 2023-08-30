@@ -6,6 +6,7 @@ use common\models\about\About;
 use common\models\contact\Contact;
 use common\models\course\Course;
 use common\models\MainImg\MainImg;
+use common\models\user\User;
 use common\widgets\Detect;
 use frontend\models\LoginForm;
 use frontend\models\SignupForm;
@@ -15,6 +16,7 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\Response;
 use frontend\models\ContactForm;
+use frontend\modules\teacher\Teacher;
 use yii\helpers\VarDumper;
 /**
  * Site controller
@@ -77,7 +79,12 @@ class SiteController extends Controller
     {
         $courses = Course::find()->count();
         $model = About::find()->one();
-        return $this->render('index', compact('model', 'courses'));
+        $teachers = User::find()->where(['role' => Detect::TEACHER, 'status' => Detect::STATUS_ACTIVE])->count();
+        $pupils = User::find()->where(['role' => Detect::PUPIL, 'status' => Detect::STATUS_ACTIVE])->count();
+        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->limit(4)->all();
+        $indexTeacher = User::find()->where(['role' => Detect::TEACHER, 'status' => Detect::STATUS_ACTIVE])->limit(3)->all();
+        $indexCourse = Course::find()->limit(3)->all();
+        return $this->render('index', compact('model', 'courses', 'teachers', 'pupils', 'datas', 'indexTeacher', 'indexCourse'));
     }
 
     /**
@@ -148,8 +155,11 @@ class SiteController extends Controller
 
     public function actionAbout(): string
     {
-        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->limit(8)->all();
+        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->all();
         $model = About::find()->one();
-        return $this->render('about',compact('datas', 'model'));
+        $teachers = User::find()->where(['role' => Detect::TEACHER, 'status' => Detect::STATUS_ACTIVE])->count();
+        $pupils = User::find()->where(['role' => Detect::PUPIL, 'status' => Detect::STATUS_ACTIVE])->count();
+        $courses = Course::find()->count();
+        return $this->render('about',compact('datas', 'model', 'teachers', 'pupils', 'courses'));
     }
 }
