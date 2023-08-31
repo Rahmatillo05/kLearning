@@ -45,6 +45,25 @@ class PaymentMessage extends \yii\db\ActiveRecord
     public static function editMessage(string $pupil, int|float $payment_sum): array|string
     {
         $message = self::find()->one()->message;
-        return str_replace(['{pupil}', '{month}', '{payment_sum}'], [$pupil, date('M'), $payment_sum], $message);
+        return str_replace(['{pupil}', '{month}', '{payment_sum}'], [$pupil, self::monthName(date('m')), $payment_sum], $message);
+    }
+
+    private static function monthName(int $month_number): string
+    {
+        $month = [
+            1 => "Yanvar",
+            2 => "Fevral",
+            3 => "Mart",
+            4 => "Aprel",
+            5 => "May",
+            6 => "Iyun",
+            7 => "Iyul",
+            8 => "Avgust",
+            9 => "Sentabr",
+            10 => "Oktabr",
+            11 => "Noyabr",
+            12 => "Dekabr"
+        ];
+        return $month[$month_number];
     }
 }
