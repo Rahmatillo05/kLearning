@@ -69,6 +69,7 @@ class PaymentController extends BaseController
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save() && $sms = $model->paymentMessage()) {
+                Yii::$app->session->setFlash('success', "SMS xabari jo'natildi!");
                 return $this->redirect(['view', 'id' => $model->id]);
             } else{
                 Yii::$app->session->setFlash('error', "SMS xabari jo'natilmadi!");
