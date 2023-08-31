@@ -13,7 +13,7 @@ if (!$model) {
    echo "Malumotlar topilmadi"; 
 }else{
     ?>
-    <div class="staff">
+    <div class="staff w-100">
     <div class="img-wrap d-flex align-items-stretch">
         <div class="img align-self-stretch" style="background-image: url(<?= Yii::getAlias('@images') ?>/<?=  $model->userInfo->image ?? ''   ?>);"></div>
     </div>

@@ -37,7 +37,7 @@ class TeachersController extends \yii\web\Controller
      */
     private function findModel(int $id): User
     {
-        $model = User::findOne(['status' => Detect::STATUS_ACTIVE, 'role' => Detect::TEACHER]);
+        $model = User::findOne(['id' => $id]);
         if (!$model){
             throw new NotFoundHttpException();
         }
