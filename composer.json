@@ -26,7 +26,8 @@
         "kartik-v/yii2-icons": "@dev",
         "rahmatullo/eskiz-sms": "^1.5",
         "lavrentiev/yii2-toastr": "dev-master",
-        "kartik-v/yii2-mpdf": "dev-master"
+        "kartik-v/yii2-mpdf": "dev-master",
+        "kartik-v/yii2-widget-depdrop": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

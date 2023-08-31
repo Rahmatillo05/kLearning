@@ -21,6 +21,7 @@ class BaseController extends Controller
                     [
                         'actions' => ['login'],
                         'allow' => true,
+                        'roles' => ['?']
                     ],
                     [
                         'allow' => true,
