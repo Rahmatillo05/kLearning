@@ -7,7 +7,7 @@ use yii\bootstrap5\LinkPager;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\helpers\Url;
-$this->title = "O'quvchi"
+$this->title = "O'quvchi";
 ?>
 <p>
     <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>

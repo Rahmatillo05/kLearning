@@ -3,12 +3,15 @@
 namespace frontend\modules\owner\controllers;
 
 use backend\controllers\BaseController;
+use common\models\groups\Family;
+use common\models\groups\FamilyList;
 use common\models\groups\WaitList;
 use common\models\user\TeacherSocialAccounts;
 use common\models\user\User;
 use common\models\user\UserInfo;
 use common\widgets\Detect;
 use common\widgets\Tools;
+use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\db\StaleObjectException;
 use yii\helpers\Json;
@@ -37,15 +40,27 @@ class PupilController extends BaseController
                 'dataProvider' => $dataProvider,
             ]);
     }
+
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionView(int $id): string
     {
         $model = $this->findModel($id);
-        if ($model->role == Detect::TEACHER) {
-            $teacher_info = UserInfo::findOne(['user_id' => $model->id]) ?? new UserInfo();
-            $teacher_social_account = TeacherSocialAccounts::findOne(['user_id' => $model->id]) ?? new TeacherSocialAccounts();
-            return $this->render('teacher_view', compact('model', 'teacher_social_account', 'teacher_info'));
-        }
-        return $this->render('view', compact('model'));
+        $dataProvider = new ActiveDataProvider([
+            'query' => User::find()->where(['role' => Detect::PARENT]),
+
+            'pagination' => [
+                'pageSize' => 50
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
+
+        ]);
+        return $this->render('view', compact('model','dataProvider'));
     }
 
     /**
@@ -74,6 +89,10 @@ class PupilController extends BaseController
             'model' => $model,
         ]);
     }
+
+    /**
+     * @throws Exception
+     */
     public function actionAddParent(int $pupil_id): string|Response
     {
         $this->layout = 'blank';

@@ -36,7 +36,7 @@ use yii\helpers\Url; ?>
                         <span>
                           <i class="ti ti-users"></i>
                         </span>
-                        <span class="hide-menu">Users</span>
+                        <span class="hide-menu">O'quvchilar</span>
                     </a>
                     
                 </li>
@@ -46,6 +46,18 @@ use yii\helpers\Url; ?>
                           <i class="ti ti-users"></i>
                         </span>
                         <span class="hide-menu">Qabulga yozilganlar</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Payment CONTROLS</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/manager/payment/']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-moneybag"></i>
+                        </span>
+                        <span class="hide-menu">Payments</span>
                     </a>
                 </li>
             </ul>

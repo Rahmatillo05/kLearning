@@ -3,6 +3,7 @@
 use common\models\user\User;
 use common\widgets\Tools;
 use yii\helpers\Html;
+use yii\web\YiiAsset;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
@@ -11,7 +12,7 @@ use yii\widgets\DetailView;
 $this->title = $model->username;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+YiiAsset::register($this);
 ?>
 <div class="card">
 
@@ -28,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ]) ?>
         </p>
-
         <?= DetailView::widget([
             'model' => $model,
             'options' => [
@@ -55,6 +55,5 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
             ],
         ]) ?>
-
     </div>
 </div>
