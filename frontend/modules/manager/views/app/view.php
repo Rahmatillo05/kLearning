@@ -10,6 +10,7 @@
 use common\models\course\Category;
 use common\models\course\Course;
 use common\models\groups\WaitList;
+use common\widgets\Tools;
 use yii\helpers\Url;
 
 $this->title = $model->title;
@@ -26,12 +27,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Kurslar', 'url' => ['course/index'
                 <div class="row">
                     <div class="col-md-12 d-flex align-items-stretch ftco-animate">
                         <div class="project-wrap">
-                                <span href="" class="img"
-                                      style="background-image: url(<?= Yii::getAlias('@images') . '/' . $model->image ?>);">
-                                    <span class="price"><?= $model->category->name ?></span>
+                                <span href="" class="img">
+                                <?= Tools::imageRender($model->image, ['class' => 'card-img-top rounded-0']) ?>
                                 </span>
                             <div class="text p-4">
-                                <h3><span><?= $model->title ?></span></h3>
+                                <h3><span><?= $model->title ?></span><span class="price btn btn-primary ms-4"><?= $model->category->name ?></span></h3>
                                 <p class="advisor"> O'qituvchi : <a href="<?= Url::to(['/teachers/view', 'id' => $model->id]) ?>"><?= $model->teacher->full_name ?></a></p>
                                 <p class="advisor"><?= $model->description ?></p>
                                 <ul class="d-flex justify-content-between">
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Kurslar', 'url' => ['course/index'
             </div>
             <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 offset-xl-0 offset-lg-0 offset-md-2 offset-sm-0 offset-0 mt-3">
                 <div class="row">
-                    <div class="col-md-12 ftco-animate">
+                    <div class="col-md-12 ftco-animate"><br><br><br><br>    
                         <?= $this->render('_wait-list', [
                                 'model' => $wait_list
                         ]) ?>

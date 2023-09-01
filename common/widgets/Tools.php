@@ -16,6 +16,8 @@ use yii\bootstrap5\Html;
 
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
+
+use function PHPUnit\Framework\fileExists;
 use function PHPUnit\Framework\isNull;
 
 class Tools
@@ -105,10 +107,6 @@ class Tools
         return "<img src='" . Yii::$app->params['viewPath'] . $image_name . "' class='img-fluid w-25'>";
     }
 
-    public static function deleteFile(string $path): bool
-    {
-        return unlink(Yii::$app->params['uploadPath'] . $path);
-    }
 
     public static function imageRender(string $image_name, array $options = []): string
     {
