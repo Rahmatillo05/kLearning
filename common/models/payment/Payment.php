@@ -2,9 +2,12 @@
 
 namespace common\models\payment;
 
+use common\models\groups\Family;
 use common\models\groups\Group;
 use common\models\user\User;
 use common\widgets\Detect;
+use ErrorException;
+use rahmatullo\eskizsms\Eskiz;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
@@ -112,8 +115,38 @@ class Payment extends ActiveRecord
         return User::findAll(['status' => Detect::STATUS_ACTIVE, 'role' => Detect::TEACHER]);
     }
 
-    public function getNumberFormat()
+    public function getNumberFormat(): string
     {
-        return number_format($this->amount, 0, '.', ' '). " UZS";
+        return number_format($this->amount, 0, '.', ' ') . " UZS";
+    }
+
+    /**
+     * @throws ErrorException
+     */
+    public function paymentMessage(): bool
+    {
+        $family = Family::findOne(['pupil_id' => $this->pupil_id]);
+        $parent_number = $family->parent->tel_number;
+        $pupil_name = $family->pupil->full_name;
+        $message = PaymentMessage::editMessage($pupil_name, $this->amount);
+        $res = $this->sendMessage($parent_number, $message);
+        if ($res['status'] == 'waiting') {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @throws ErrorException
+     */
+    private function sendMessage($number, $message): array
+    {
+        $sms = new Eskiz(Yii::$app->params['eskiz_email'], Yii::$app->params['eskiz_key']);
+        $options = [
+            'mobile_phone' => $number,
+            'message' => $message,
+            'from' => 4546
+        ];
+        return $sms->smsSend($options);
     }
 }

@@ -1,0 +1,26 @@
+<?php
+/**
+ * @var Course $model
+ */
+
+use common\models\course\Course;
+use yii\helpers\StringHelper;
+use yii\helpers\Url;
+
+?>
+
+
+
+<div class="project-wrap">
+    <a href="<?= Url::to(['app/view', 'id' => $model->id]) ?>" class="img" style="background-image: url(<?= Yii::getAlias('@images') . '/' . $model->image ?>)">
+        <span class="price"><?= $model->category->name ?></span>
+    </a>
+    <div class="text p-4">
+        <h3><a href="<?= Url::to(['app/view', 'id' => $model->id]) ?>"><?= $model->title ?></a></h3>
+        <p class="advisor">O'qituvchi: <span><?= $model->teacher->full_name ?></span>
+        </p>
+        <ul class="d-flex justify-content-between">
+            <a href="<?= Url::to(['app/view', 'id' => $model->id, 't_id' => $model->teacher->id]) ?>">Qabulga yozilish</a>
+        </ul>
+    </div>
+</div>

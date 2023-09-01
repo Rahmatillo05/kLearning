@@ -24,6 +24,7 @@ $this->title = "Bildirishnomalar";
 
 ?>
 
+<a href="http://klearning/manager/app/create" class="btn btn-outline-success w-10">Yaratish</a><br><br>
 <div class="card">
     <div class="card-header card-title">Qabuldagi o'quvchilar</div>
     <div class="card-body">
@@ -48,7 +49,7 @@ $this->title = "Bildirishnomalar";
                     'attribute' => 'course_id',
                     'value' => function (WaitList $waitList) {
                         $module = Yii::$app->getModules(true)[0]->id;
-                        return Html::a($waitList->course->title, ["/$module/course/view", 'id' => $waitList->id]);
+                        return Html::a($waitList->course->title, [""]);
                     },
                     'format' => 'html'
                 ],
