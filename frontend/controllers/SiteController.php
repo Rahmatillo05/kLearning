@@ -167,11 +167,16 @@ class SiteController extends Controller
 
     public function actionAbout(): string
     {
-        $datas = Contact::find()->where(['status' => Detect::STATUS_ACTIVE])->all();
+        $comments = new ActiveDataProvider([
+            'query' => Contact::find()
+                ->where(['status' => Detect::STATUS_ACTIVE])
+                ->orderBy(['id' => SORT_DESC])
+                ->limit(6)
+        ]);
         $model = About::find()->one();
         $teachers = User::find()->where(['role' => Detect::TEACHER, 'status' => Detect::STATUS_ACTIVE])->count();
         $pupils = User::find()->where(['role' => Detect::PUPIL, 'status' => Detect::STATUS_ACTIVE])->count();
         $courses = Course::find()->count();
-        return $this->render('about', compact('datas', 'model', 'teachers', 'pupils', 'courses'));
+        return $this->render('about', compact('comments', 'model', 'teachers', 'pupils', 'courses'));
     }
 }
