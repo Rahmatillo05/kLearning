@@ -64,7 +64,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     'urlCreator' => function ($action, Payment $model, $key, $index, $column) {
                         return Url::toRoute([$action, 'id' => $model->id]);
                     },
-                    'buttons' => Tools::gridViewButtons()
+                    'buttons' => Tools::gridViewButtons(),
+                    'template' => "{update}\n{delete}"
                 ],
             ],
             'pager' => [

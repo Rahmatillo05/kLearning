@@ -61,7 +61,7 @@ class AppController extends Controller
         } else{
             Yii::$app->session->setFlash('danger', 'O\'quvchi ogohlantirishni saqlashda xatolik yuz berdi');
         }
-        return $this->redirect('index');
+        return $this->redirect('notification');
     }
     public function actionSendSms(): Response|string
     {

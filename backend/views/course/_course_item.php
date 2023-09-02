@@ -9,7 +9,7 @@ use yii\helpers\Url;
 <div class="card overflow-hidden rounded-2">
     <div class="position-relative">
         <a href="<?= Url::to(['/course/view', 'id' => $model->id]) ?>">
-            <?= Tools::imageRender($model->image, ['class' => 'card-img-top rounded-0']) ?>
+            z
         </a>
 
         <div class="card-body pt-3 p-4">
