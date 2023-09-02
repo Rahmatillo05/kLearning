@@ -11,6 +11,7 @@ use common\widgets\Detect;
 use frontend\models\LoginForm;
 use frontend\models\SignupForm;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -18,6 +19,7 @@ use yii\web\Response;
 use frontend\models\ContactForm;
 use frontend\modules\teacher\Teacher;
 use yii\helpers\VarDumper;
+
 /**
  * Site controller
  */
@@ -77,14 +79,22 @@ class SiteController extends Controller
      */
     public function actionIndex(): string
     {
-        $courses = Course::find()->count();
-        $model = About::find()->one();
-        $teachers = User::find()->where(['role' => Detect::TEACHER, 'status' => Detect::STATUS_ACTIVE])->count();
-        $pupils = User::find()->where(['role' => Detect::PUPIL, 'status' => Detect::STATUS_ACTIVE])->count();
-        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->limit(4)->all();
-        $indexTeacher = User::find()->where(['role' => Detect::TEACHER, 'status' => Detect::STATUS_ACTIVE])->limit(3)->all();
-        $indexCourse = Course::find()->limit(3)->all();
-        return $this->render('index', compact('model', 'courses', 'teachers', 'pupils', 'datas', 'indexTeacher', 'indexCourse'));
+        $courses = new ActiveDataProvider([
+            'query' => Course::find()
+                ->where(['status' => Detect::STATUS_ACTIVE])
+                ->limit(6)
+                ->orderBy(['id' => SORT_DESC])
+        ]);
+        $about = About::find()->one();
+        $pupils = User::find()->where(['role' => Detect::PUPIL])->count();
+        $teacher = User::find()->where(['role' => Detect::TEACHER])->count();
+        $comments = new ActiveDataProvider([
+            'query' => Contact::find()
+                ->where(['status' => Detect::STATUS_ACTIVE])
+                ->orderBy(['id' => SORT_DESC])
+                ->limit(6)
+        ]);
+        return $this->render('index', compact('courses', 'about', 'pupils', 'teacher', 'comments'));
     }
 
     /**
@@ -109,6 +119,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
     public function actionContact()
     {
         $model = new ContactForm();
@@ -127,6 +138,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
     public function actionLogout(): Response
     {
         Yii::$app->user->logout();
@@ -155,11 +167,11 @@ class SiteController extends Controller
 
     public function actionAbout(): string
     {
-        $datas = Contact::find()->where(['status' =>Detect::STATUS_ACTIVE])->all();
+        $datas = Contact::find()->where(['status' => Detect::STATUS_ACTIVE])->all();
         $model = About::find()->one();
         $teachers = User::find()->where(['role' => Detect::TEACHER, 'status' => Detect::STATUS_ACTIVE])->count();
         $pupils = User::find()->where(['role' => Detect::PUPIL, 'status' => Detect::STATUS_ACTIVE])->count();
         $courses = Course::find()->count();
-        return $this->render('about',compact('datas', 'model', 'teachers', 'pupils', 'courses'));
+        return $this->render('about', compact('datas', 'model', 'teachers', 'pupils', 'courses'));
     }
 }

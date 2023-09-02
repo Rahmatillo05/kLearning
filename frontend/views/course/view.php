@@ -54,6 +54,5 @@ $this->params['breadcrumbs'][] = ['label' => 'Kurslar', 'url' => ['course/index'
             </div>
         </div>
     </div>
-    </div>
 </section>
 

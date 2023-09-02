@@ -2,7 +2,7 @@
 
 /** @var yii\web\View $this */
 
-$this->title = 'Manager - Dashboard';
+$this->title = 'Teacher - Dashboard';
 ?>
 
 <div class="card">
