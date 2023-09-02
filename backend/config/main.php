@@ -16,6 +16,9 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'assetManager' => [
+            'forceCopy' => YII_ENV_DEV ? true : false,
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -44,8 +47,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'scriptUrl' => '/backend/index.php',
-            'rules' => [
-            ],
+            'rules' => [],
         ],
 
     ],
