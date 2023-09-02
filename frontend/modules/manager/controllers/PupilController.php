@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\modules\owner\controllers;
+namespace frontend\modules\manager\controllers;
 
 use backend\controllers\BaseController;
 use common\models\groups\Family;

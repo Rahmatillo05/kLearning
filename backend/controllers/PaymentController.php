@@ -145,7 +145,7 @@ class PaymentController extends BaseController
         return ['output' => '', 'selected' => ''];
     }
 
-    public function actionPupil()
+    public function actionPupil(): array
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         if (!empty(Yii::$app->request->post('depdrop_parents'))) {

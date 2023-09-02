@@ -30,8 +30,8 @@ $this->title = $model->title;
                 <?= Detect::dtmStatus($model->status) ?>
             </h3>
             <div>
-                <a href="<?= Url::to(['/owner/dtm/update', 'id' => $model->id]) ?>" class="btn btn-primary">Update</a>
-                <a href="<?= Url::to(['/owner/dtm/delete', 'id' => $model->id]) ?>" data-method="post" class="btn btn-danger"><i
+                <a href="<?= Url::to(['/manager/dtm/update', 'id' => $model->id]) ?>" class="btn btn-primary">Update</a>
+                <a href="<?= Url::to(['/manager/dtm/delete', 'id' => $model->id]) ?>" data-method="post" class="btn btn-danger"><i
                             class="ti ti-trash"></i> Delete</a>
             </div>
         </div>
@@ -44,7 +44,7 @@ $this->title = $model->title;
                     ]) ?>
                 </div>
                 <h4 class="card-title card-header">Pupil list</h4>
-                <a href="<?= Url::to(['/owner/dtm/pdf-download', 'id' => $model->id]) ?>" target="_blank"
+                <a href="<?= Url::to(['/manager/dtm/pdf-download', 'id' => $model->id]) ?>" target="_blank"
                    class="btn btn-info">Download PDF</a>
             </div>
             <?php if ($model->dtmPupils): ?>

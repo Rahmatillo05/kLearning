@@ -15,9 +15,9 @@ class AppController extends Controller
           ]
         ];
     }
-
     public function actionIndex(): string
     {
         return $this->render('index');
     }
+
 }

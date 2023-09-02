@@ -32,7 +32,7 @@ use yii\helpers\Url; ?>
                     <span class="hide-menu">User Controls</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="<?= Url::to(['/manager/user']) ?>" aria-expanded="false">
+                    <a class="sidebar-link" href="<?= Url::to(['/manager/pupil']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-users"></i>
                         </span>
@@ -58,6 +58,26 @@ use yii\helpers\Url; ?>
                           <i class="ti ti-moneybag"></i>
                         </span>
                         <span class="hide-menu">Payments</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">DTM</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/manager/dtm/subject']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-math"></i>
+                        </span>
+                        <span class="hide-menu">Subjects</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/manager/dtm']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-a-b"></i>
+                        </span>
+                        <span class="hide-menu">DTM Tests</span>
                     </a>
                 </li>
             </ul>

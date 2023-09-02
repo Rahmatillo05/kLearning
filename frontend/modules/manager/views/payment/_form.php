@@ -33,7 +33,7 @@ use yii\widgets\MaskedInput;
         ],
         'pluginOptions' => [
             'depends' => ['teacher-id'],
-            'url' => Url::to(['/payment/group']),
+            'url' => Url::to(['/manager/payment/group']),
             'placeholder' => 'Guruhni tanlang...',
         ],
         'type' => DepDrop::TYPE_SELECT2
@@ -45,7 +45,7 @@ use yii\widgets\MaskedInput;
         ],
         'pluginOptions' => [
             'depends' => ['group-id'],
-            'url' => Url::to(['/payment/pupil']),
+            'url' => Url::to(['/manager/payment/pupil']),
             'placeholder' => 'O\'quvchini tanlang...'
         ],
         'type' => DepDrop::TYPE_SELECT2

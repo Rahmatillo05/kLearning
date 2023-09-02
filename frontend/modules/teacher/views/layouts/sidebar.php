@@ -47,13 +47,24 @@ use yii\helpers\Url; ?>
                         <span class="hide-menu">Kurslarim</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="<?= Url::to(['/teacher/app/my-room']) ?>" aria-expanded="false">
                         <span>
                           <i class="ti ti-door"></i>
                         </span>
                         <span class="hide-menu">Mening xonam</span>
+                    </a>
+                </li>
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">DTM</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="<?= Url::to(['/teacher/dtm']) ?>" aria-expanded="false">
+                        <span>
+                          <i class="ti ti-a-b"></i>
+                        </span>
+                        <span class="hide-menu">DTM Tests</span>
                     </a>
                 </li>
             </ul>
