@@ -12,7 +12,7 @@ use yii\widgets\MaskedInput;
 <h3>Qabulga yozilish!</h3>
 
 <?php $form = ActiveForm::begin([
-        'action'=>Url::toRoute(['/course/wait-list'])
+        'action'=>Url::toRoute(['notification'])
 ]); ?>
 
 <?= $form->field($model, 'teacher_id')->hiddenInput()->label(false) ?>

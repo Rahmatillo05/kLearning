@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\course\Course;
 use common\models\course\CourseReview;
 use common\widgets\Tools;
+use common\widgets\UploadFile;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
@@ -100,8 +101,8 @@ class CourseController extends BaseController
         if ($this->request->isPost && $model->load($this->request->post())) {
             $oldImage = $model->getOldAttribute('image');
             $image = UploadedFile::getInstance($model, 'image');
-            if (!empty($image) && Tools::deleteFile($oldImage)) {
-                $model->image = $model->uploadFile($image);
+            if (!empty($image)) {
+                $model->image = UploadFile::saveFile($image, $oldImage);
             } else {
                 $model->image = $oldImage;
             }
