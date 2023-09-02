@@ -1,7 +1,8 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\modules\owner\controllers;
 
+use backend\controllers\BaseController;
 use common\models\groups\FamilyList;
 use common\models\groups\Group;
 use common\models\payment\Payment;
@@ -40,6 +41,18 @@ class PaymentController extends BaseController
         ]);
     }
 
+    /**
+     * Displays a single Payment model.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
 
     /**
      * Creates a new Payment model.

@@ -1,13 +1,17 @@
 <?php
 
-namespace backend\controllers;
+namespace frontend\modules\manager\controllers;
 
+use backend\controllers\BaseController;
 use common\models\groups\FamilyList;
 use common\models\groups\Group;
 use common\models\payment\Payment;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 use yii\web\Response;
 
 /**
@@ -15,7 +19,6 @@ use yii\web\Response;
  */
 class PaymentController extends BaseController
 {
-
     /**
      * Lists all Payment models.
      *
@@ -40,6 +43,18 @@ class PaymentController extends BaseController
         ]);
     }
 
+    /**
+     * Displays a single Payment model.
+     * @param int $id ID
+     * @return string
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
 
     /**
      * Creates a new Payment model.

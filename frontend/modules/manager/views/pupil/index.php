@@ -10,10 +10,6 @@ use yii\helpers\Url;
 
 $this->title = "O'quvchi";
 ?>
-<p>
-    <?= Html::a("O'quvchi qo'shish", ['create'], ['class' => 'btn btn-success']) ?>
-</p>
-
 <div class="table-responsive">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
