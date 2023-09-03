@@ -55,7 +55,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
     /**
      * {@inheritdoc}
      */
@@ -71,7 +70,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
     /**
      * Displays homepage.
      *
@@ -96,7 +94,6 @@ class SiteController extends Controller
         ]);
         return $this->render('index', compact('courses', 'about', 'pupils', 'teacher', 'comments'));
     }
-
     /**
      * Logs in a user.
      *
@@ -119,8 +116,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
-    public function actionContact()
+    public function actionContact(): Response|string
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post())) {
@@ -138,7 +134,6 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
     public function actionLogout(): Response
     {
         Yii::$app->user->logout();
