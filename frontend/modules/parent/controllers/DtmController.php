@@ -1,10 +1,15 @@
 <?php
 
-namespace frontend\modules\pupil\controllers;
+namespace frontend\modules\parent\controllers;
 
 use common\models\dtm\Dtm;
 use kartik\mpdf\Pdf;
+use Mpdf\MpdfException;
+use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
+use setasign\Fpdi\PdfParser\PdfParserException;
+use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -12,7 +17,7 @@ use yii\web\Response;
 
 class DtmController extends Controller
 {
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $dtm = new ActiveDataProvider([
             'query' => Dtm::find(),
@@ -37,6 +42,14 @@ class DtmController extends Controller
         return $this->render('view', compact('model'));
     }
 
+    /**
+     * @throws CrossReferenceException
+     * @throws MpdfException
+     * @throws InvalidConfigException
+     * @throws PdfParserException
+     * @throws NotFoundHttpException
+     * @throws PdfTypeException
+     */
     public function actionResultDownload(int $id): string
     {
         $model = $this->findModel($id);
@@ -55,7 +68,10 @@ class DtmController extends Controller
         return $pdf->render();
     }
 
-    private function findModel(int $id): ?Dtm
+    /**
+     * @throws NotFoundHttpException
+     */
+    private function findModel(int $id): Dtm
     {
         if (($model = Dtm::findOne(['id' => $id])) !== null) {
             return $model;
