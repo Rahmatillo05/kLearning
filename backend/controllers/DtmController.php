@@ -7,7 +7,12 @@ use common\models\dtm\DtmPupil;
 use common\models\dtm\DtmResult;
 use common\models\dtm\Subject;
 use kartik\mpdf\Pdf;
+use Mpdf\MpdfException;
+use setasign\Fpdi\PdfParser\CrossReference\CrossReferenceException;
+use setasign\Fpdi\PdfParser\PdfParserException;
+use setasign\Fpdi\PdfParser\Type\PdfTypeException;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -90,6 +95,14 @@ class DtmController extends BaseController
         return $this->redirect(['index']);
     }
 
+    /**
+     * @throws MpdfException
+     * @throws CrossReferenceException
+     * @throws InvalidConfigException
+     * @throws PdfParserException
+     * @throws NotFoundHttpException
+     * @throws PdfTypeException
+     */
     public function actionPdfDownload(int $id): string
     {
         $model = $this->findDtmModel($id);

@@ -10,9 +10,7 @@
  */
 
 use common\models\about\About;
-use common\widgets\Tools;
 use yii\data\ActiveDataProvider;
-use yii\helpers\StringHelper;
 use yii\helpers\Url;
 use yii\widgets\ListView;
 
@@ -150,5 +148,5 @@ $this->title = 'Kelajak Education';
         </div>
     </div>
 </section>
-<!--End commonts-->
+<!--End comments-->
 <br><br>

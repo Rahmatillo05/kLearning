@@ -28,6 +28,9 @@ class DtmController extends Controller
         return $this->render('index', compact('dtm'));
     }
 
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionView(int $id): string
     {
         $model = $this->findModel($id);

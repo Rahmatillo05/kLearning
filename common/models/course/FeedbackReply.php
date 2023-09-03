@@ -3,6 +3,7 @@
 namespace common\models\course;
 
 use Yii;
+use yii\db\ActiveQuery;
 
 /**
  * This is the model class for table "feedback_reply".
@@ -20,7 +21,7 @@ class FeedbackReply extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'feedback_reply';
     }
@@ -56,9 +57,9 @@ class FeedbackReply extends \yii\db\ActiveRecord
     /**
      * Gets query for [[CourseFeedback]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
-    public function getCourseFeedback()
+    public function getCourseFeedback(): ActiveQuery
     {
         return $this->hasOne(CourseReview::class, ['id' => 'course_feedback_id']);
     }

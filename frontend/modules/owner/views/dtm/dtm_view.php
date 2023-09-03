@@ -30,8 +30,8 @@ $this->title = $model->title;
                 <?= Detect::dtmStatus($model->status) ?>
             </h3>
             <div>
-                <a href="<?= Url::to(['/dtm/update', 'id' => $model->id]) ?>" class="btn btn-primary">Update</a>
-                <a href="<?= Url::to(['/dtm/delete', 'id' => $model->id]) ?>" data-method="post" class="btn btn-danger"><i
+                <a href="<?= Url::to(['/owner/dtm/update', 'id' => $model->id]) ?>" class="btn btn-primary">Update</a>
+                <a href="<?= Url::to(['/owner/dtm/delete', 'id' => $model->id]) ?>" data-method="post" class="btn btn-danger"><i
                             class="ti ti-trash"></i> Delete</a>
             </div>
         </div>

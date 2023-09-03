@@ -3,12 +3,15 @@
 namespace frontend\modules\owner\controllers;
 
 use backend\controllers\BaseController;
+use common\models\groups\Family;
+use common\models\groups\FamilyList;
 use common\models\groups\WaitList;
 use common\models\user\TeacherSocialAccounts;
 use common\models\user\User;
 use common\models\user\UserInfo;
 use common\widgets\Detect;
 use common\widgets\Tools;
+use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\db\StaleObjectException;
 use yii\helpers\Json;
@@ -37,15 +40,15 @@ class PupilController extends BaseController
                 'dataProvider' => $dataProvider,
             ]);
     }
+
+    /**
+     * @throws NotFoundHttpException
+     */
     public function actionView(int $id): string
     {
         $model = $this->findModel($id);
-        if ($model->role == Detect::TEACHER) {
-            $teacher_info = UserInfo::findOne(['user_id' => $model->id]) ?? new UserInfo();
-            $teacher_social_account = TeacherSocialAccounts::findOne(['user_id' => $model->id]) ?? new TeacherSocialAccounts();
-            return $this->render('teacher_view', compact('model', 'teacher_social_account', 'teacher_info'));
-        }
-        return $this->render('view', compact('model'));
+        $family = Family::findOne(['pupil_id' => $id]);
+        return $this->render('view', compact('model','family'));
     }
 
     /**
@@ -62,8 +65,12 @@ class PupilController extends BaseController
                 $model->setPassword($model->username);
                 $model->generateAuthKey();
                 if ($model->save()) {
-                    WaitList::findOne(\Yii::$app->request->post('search'))->delete();
-                    return $model->role == Detect::PUPIL ? $this->redirect(['add-parent', 'pupil_id' => $model->id]) : $this->redirect(['view', 'id' => $model->id]);
+                    if (\Yii::$app->request->post('search')){
+                        WaitList::findOne(\Yii::$app->request->post('search'))->delete();
+                    }
+                    else{
+                        return $model->role == Detect::PUPIL ? $this->redirect(['add-parent', 'pupil_id' => $model->id]) : $this->redirect(['view', 'id' => $model->id]);
+                    }
                 }
             }
         } else {
@@ -74,6 +81,10 @@ class PupilController extends BaseController
             'model' => $model,
         ]);
     }
+
+    /**
+     * @throws Exception
+     */
     public function actionAddParent(int $pupil_id): string|Response
     {
         $this->layout = 'blank';
@@ -86,7 +97,7 @@ class PupilController extends BaseController
                 return $this->redirect(['index']);
             }
         }
-        return $this->render('create', compact('model'));
+        return $this->render('_addForm', compact('model'));
     }
 
     public function actionDelete(int $id): Response

@@ -7,6 +7,7 @@ use common\models\dtm\Dtm;
 use common\models\dtm\DtmPupil;
 use common\models\dtm\DtmResult;
 use common\models\dtm\Subject;
+use kartik\mpdf\Pdf;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\StaleObjectException;
@@ -37,6 +38,32 @@ class DtmController extends BaseController
         return $this->render('dtm_index', compact('dtm'));
     }
 
+    /**
+     * @throws \Throwable
+     * @throws StaleObjectException
+     * @throws NotFoundHttpException
+     */
+    public function actionDelete(int $id): Response
+    {
+        $this->findDtmModel($id)->delete();
+        Yii::$app->session->setFlash('success', "DTM was deleted");
+        return $this->redirect(['index']);
+    }
+    public function actionUpdate(int $id): Response|string
+    {
+        $model = $this->findDtmModel($id);
+
+        if ($model->load($this->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', "Update DTM information");
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                Yii::$app->session->setFlash('error', 'Ma\'lumotlarni saqlab bo\'lmadi!');
+                $model->loadDefaultValues();
+            }
+        }
+        return $this->render('_dtm_form', compact('model'));
+    }
     public function actionNew(): Response|string
     {
         $model = new Dtm();
@@ -51,6 +78,7 @@ class DtmController extends BaseController
         }
         return $this->render('_dtm_form', compact('model'));
     }
+
     public function actionPdfDownload(int $id): string
     {
         $model = $this->findDtmModel($id);

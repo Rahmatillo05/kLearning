@@ -9,7 +9,6 @@ use kartik\form\ActiveForm;
 /** @var ActiveForm $form */
 ?>
 <div class="card-body">
-
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'family_id')->widget(Select2::class, [
@@ -25,4 +24,5 @@ use kartik\form\ActiveForm;
     </div>
     <?php ActiveForm::end(); ?>
 
-</div><!-- group-_family -->
+</div>
+<!-- group-_family -->

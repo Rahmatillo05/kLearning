@@ -8,12 +8,6 @@ use common\models\groups\FamilyList;
 
 ?>
 <div class="row">
-    <div class="col-md-4">
-        <div class="card">
-            <h2 class="card-header card-title">O'quvchi qo'shish</h2>
-            <?= $this->render('_family', ['model' => $family]) ?>
-        </div>
-    </div>
     <div class="col-12">
         <div class="card">
             <h2 class="card-header card-title">O'quvchilar ro'yhati</h2>
